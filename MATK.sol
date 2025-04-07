@@ -11,8 +11,9 @@ contract MATK {
     bool public paused = false;
 
     event e_minted(address indexed _acc,uint _amount, uint _change);
-    event e_transferredTK(address indexed sender, address _to, uint amount);
-    event e_pause_action(bool state);
+    event e_transferredTK(address indexed _sender, address _to, uint amount);
+    event e_pause_action(bool _state);
+    event e_balance(uint _balance);
 
     modifier onlyOwner {
         require(msg.sender == owner, "You're not the owner of this contract");
@@ -27,6 +28,14 @@ contract MATK {
     constructor(){
         owner = msg.sender;
     }
+
+    function balance(address _addr)public view returns(uint){
+        return myBalance[_addr];
+    }
+
+    // function balance(address _addr)public view returns(uint){
+    //     emit e_balance(myBalance[_addr]);         
+    // } most expensive
 
     function pauseContract() public onlyOwner {
         paused = true;
