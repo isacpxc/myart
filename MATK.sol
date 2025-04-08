@@ -2,6 +2,10 @@
 
 pragma solidity ^0.8.20;
 
+interface MANFT{
+    function changeTokenUri(address currentOwner, uint id, string memory uri) external;
+}
+
 
 contract MATK {
     mapping (address => uint) public myBalance;
@@ -9,6 +13,7 @@ contract MATK {
     uint public priceTokenInWei = 10e16;
     // myERC20 public TK;
     bool public paused = false;
+    address private manft_contract_address;
 
     event e_minted(address indexed _acc,uint _amount, uint _change);
     event e_transferredTK(address indexed _sender, address _to, uint amount);
@@ -47,10 +52,11 @@ contract MATK {
         emit e_pause_action(paused);
     }
 
-    function transfer_TK(address _to, uint _amount) public payable ifNotPaused {
-        require(_amount >= myBalance[msg.sender], "You don't have MATK for this transaction");
+    function transfer_TK(address _to, uint _amount, uint tokenId, string memory uri) public payable ifNotPaused {
+        require(_amount <= myBalance[msg.sender], "You don't have MATK for this transaction");
         myBalance[msg.sender] -= _amount;
         myBalance[_to] += _amount;
+        MANFT(manft_contract_address).changeTokenUri(msg.sender,tokenId,uri);
         emit e_transferredTK(msg.sender, _to, _amount);
     }
 
@@ -63,6 +69,10 @@ contract MATK {
         myBalance[msg.sender] += tokensToMint;
         payable(msg.sender).transfer(change);
         emit e_minted(msg.sender,tokensToMint,change);
+    }
+
+    function set_manft_address(address addr) public onlyOwner {
+        manft_contract_address = addr;
     }
 
 }
