@@ -19,3 +19,5 @@ Essencially, the idea here is a simple marketplace to trade NFTs (AI-generated p
 * [Ethers.js](https://docs.ethers.org/v5/) providing connection between frontend and the smartcontracts.
 
 * [Helia](https://helia.io/) Provides connection with IPFS network.
+
+* See [issues](https://github.com/isacpxc/myart/issues) for more
