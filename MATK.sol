@@ -29,9 +29,9 @@ contract MATK {
         owner = msg.sender;
     }
 
-    function balance(address _addr)public view returns(uint){
-        return myBalance[_addr];
-    }
+    // function balance(address _addr)public view returns(uint){
+    //     return myBalance[_addr];
+    // }
 
     // function balance(address _addr)public view returns(uint){
     //     emit e_balance(myBalance[_addr]);         
