@@ -1,23 +1,12 @@
-# myart
+# React + Vite
 
-myart is my personal project for a client-based application to interact with smart contracts.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Essencially, the idea here is a simple marketplace to trade NFTs (AI-generated personal images) with the MATK token.
+Currently, two official plugins are available:
 
-## principal topics
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-* MATK token: internal token for marketing NFTs.
+## Expanding the ESLint configuration
 
-* NFT: image + metadata.
-
-* The metadata of the images will be stored in [IPFS network](https://ipfs.tech/).
-
-* Login with [Metamask](https://metamask.io/).
-
-* Use of [Sepolia](https://sepolia.dev/) testnet for now (maybe polygon latter).
-
-* [Ethers.js](https://docs.ethers.org/v5/) providing connection between frontend and the smartcontracts.
-
-* [Helia](https://helia.io/) Provides connection with IPFS network.
-
-* See [issues](https://github.com/isacpxc/myart/issues) for more
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
