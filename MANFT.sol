@@ -5,8 +5,10 @@ pragma solidity ^0.8.22;
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
+    using Strings for string;
     uint256 private _nextTokenId;
     address private matk_contract_address;
     mapping (uint256 => uint256) private NFTprice;
@@ -21,6 +23,10 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
     
     function set_matk_address(address addr) public onlyOwner {
         matk_contract_address = addr;
+    }
+
+    function compareStrings(string memory s1, string memory s2) pure public returns(bool){
+        return s1.equal(s2);
     }
 
     function _baseURI() internal pure override returns (string memory) {
@@ -43,9 +49,11 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
         return super.supportsInterface(interfaceId);
     }
 
-    function changeTokenUri(address currentOwner, uint id, string memory uri) public {
+    function changeTokenUri(address currentOwner, uint id, string memory uri, string memory oldUri) public {
         require(msg.sender == matk_contract_address, "not authorized");
+        require(id < _nextTokenId, "id do not exist!");
         require(currentOwner == ownerOf(id), "You're not the owner of this NFT.");
+        require(compareStrings(oldUri,tokenURI(id)),"the tokenId doesn't match this NFT");
         _setTokenURI(id, uri);
         emit e_nft_transfer(id,uri);
     }

@@ -3,7 +3,7 @@
 pragma solidity ^0.8.20;
 
 interface MANFT{
-    function changeTokenUri(address currentOwner, uint id, string memory uri) external;
+    function changeTokenUri(address currentOwner, uint id, string memory uri, string memory oldUri) external;
 }
 
 
@@ -52,11 +52,11 @@ contract MATK {
         emit e_pause_action(paused);
     }
 
-    function transfer_TK(address _to, uint _amount, uint tokenId, string memory uri) public payable ifNotPaused {
-        require(_amount <= myBalance[msg.sender], "You don't have MATK for this transaction");
+    function transfer_TK(address _to, uint _amount, uint tokenId, string memory uri, string memory oldUri) public payable ifNotPaused {
+        require(_amount <= myBalance[msg.sender], "You don't have enough MATK for this transaction");
         myBalance[msg.sender] -= _amount;
         myBalance[_to] += _amount;
-        MANFT(manft_contract_address).changeTokenUri(msg.sender,tokenId,uri);
+        MANFT(manft_contract_address).changeTokenUri(_to,tokenId,uri, oldUri);
         emit e_transferredTK(msg.sender, _to, _amount);
     }
 
