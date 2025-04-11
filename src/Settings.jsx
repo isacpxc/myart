@@ -1,10 +1,11 @@
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar";
+import Main from "./components/Main"
 
 function Settings() {
     return (
         <>
             <Sidebar />
-            <h1>Config page</h1>
+            <Main />
         </>
     );
 }

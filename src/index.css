@@ -1,84 +1,28 @@
-@import "tailwindcss";
-@tailwind utilities;
-
-
-@theme {
-  --color-primary: oklch(0.33 0.0952 324.99);
-  --color-secondary: oklch(0.61 0.0766 252.19);
-}
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-@layer components {
-  .sidebar-icon {
-    @apply relative flex items-center justify-center h-12 mb-12 mx-auto shadow-lg bg-gray-800 text-green-500 hover:bg-green-600 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear cursor-pointer;
-  }
-
-  .sidebar-tooltip {
-    @apply absolute w-auto !p-2 m-2 min-w-max left-15 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-200 scale-0 origin-left
-  }
-}
-
-
-
-/* remember :root -> html */
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  /* line-height: 1.5; */
-  /* font-weight: 400; */
-
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
-  /* background-color: #242424; */
-
-  /* font-synthesis: none; */
-  /* text-rendering: optimizeLegibility; */
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  --color-primary: #341636;
+  --color-secondary: #6186b0;
+  --color-dark-blue: #021526;
 }
 
-/* body {
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
-
-
-/* a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-} */
-
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body {
+  /* min-width: 320px;
+  min-height: 100vh; */
+  /* display: flex;
+  flex-direction: column; */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.dashboard {
+  position: absolute;
+  /* display: flex; */
+  width: 100vw;
+  background-color: rgb(171, 131, 78);
+  height: 100vh;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
- */

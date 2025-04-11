@@ -1,10 +1,15 @@
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar";
+import Main from "./components/Main";
 
 function Profile() {
     return (
         <>
-            <Sidebar />
-            <h1>Profile page</h1>
+            <div>
+
+                <Sidebar />
+            </div>
+            <Main />
+
         </>
     );
 }

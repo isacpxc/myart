@@ -1,10 +1,11 @@
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar";
+import Main from "./components/Main"
 
 function Help() {
     return (
         <>
             <Sidebar />
-            <h1>Help page</h1>
+            <Main />
         </>
     );
 }
