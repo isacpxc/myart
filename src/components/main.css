@@ -1,0 +1,6 @@
+.main-content {
+  width: 95%;
+  background-color: var(--color-dark-blue);
+  height: 100vh;
+  float: right;
+}
