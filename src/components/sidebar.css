@@ -55,10 +55,10 @@
   border-radius: 30%;
   left: 90%;
   scale: 0;
+  transform-origin: left;
 }
 
 .sidebar-icon:hover .subtitle-blink {
   scale: 1;
   transition: all linear 0.2s;
-  transform-origin: left;
 }
