@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
+import {connectMM} from "./services/metaConnection"
 
 function Profile() {
     const [connected, setConnected] = useState(0);
@@ -10,7 +11,9 @@ function Profile() {
             <>
                 <span>Not Connected</span>
                 <br />
-                <button>Login With Metamask</button>
+                <button onClick={()=>{
+                    connectMM();
+                }}>Login With Metamask</button>
                 <br />
                 <button onClick={() => {
                     setConnected(!connected);
