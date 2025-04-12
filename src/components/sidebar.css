@@ -26,9 +26,9 @@
   /* transform: translateX(50%); */
   display: flex;
   width: 100%;
-  border: 1px solid aqua;
+  border: 1px solid var(--color-neon);
   border-radius: 40%;
-  color: aqua;
+  color: var(--color-neon);
   margin-bottom: 10px;
   font-size: 3vw;
   padding: 0.1rem;
@@ -40,7 +40,7 @@
 .sidebar-icon:hover {
   /* transform: translateX(0%); */
   color: var(--color-primary);
-  background-color: aqua;
+  background-color: var(--color-neon);
   /* font-size: 2vw; */
   border-radius: 30%;
   transition: all linear 0.2s;
@@ -50,7 +50,7 @@
   position: absolute;
   font-size: 1vw;
   /* color: aqua !important; */
-  background-color: aqua;
+  background-color: var(--color-neon);
   padding: 0.5rem;
   border-radius: 30%;
   left: 90%;
