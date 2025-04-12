@@ -1,9 +1,9 @@
 import "./main.css"
 
-function Main() {
+function Main({ page }) {
   return (
     <main className="main-content">
-      asdad
+      {page}
     </main>
   );
 }
