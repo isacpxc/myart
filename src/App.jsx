@@ -3,11 +3,24 @@ import Main from "./components/Main.jsx"
 
 function App() {
 
+  const HomePage = () => {
+    return (
+      <>
+        <span>Search Collection by Address</span>
+        <br />
+        <input type="text" /><button>search</button>
+        <div className="hold-test-blocks">
+          {/* <div className="test-block"></div> */}
+        </div>
+      </>
+    );
+  }
+
   return (
-    <div className="dashboard">
+    <>
       <Sidebar />
-      <Main />
-    </div>
+      <Main page={<HomePage />} />
+    </>
   )
 }
 
