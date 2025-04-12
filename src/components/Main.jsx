@@ -1,9 +1,9 @@
 import "./main.css"
 
-function Main({ page }) {
+function Main(props) {
   return (
-    <main className="main-content">
-      {page}
+    <main className="main-content" style={props.specialStyle}>
+      {props.page}
     </main>
   );
 }
