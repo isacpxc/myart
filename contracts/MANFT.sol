@@ -33,7 +33,7 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
         return "ipfs://";
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner returns (uint256) {
+    function safeMint(address to, string memory uri) public returns (uint256) {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
