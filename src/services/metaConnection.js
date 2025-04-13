@@ -1,8 +1,15 @@
 import { ethers } from "ethers";
 
-export const connectMM = async (str) => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  await provider.send("eth_requestAccounts", []);
-  const signer = await provider.getSigner();
-  console.log(signer);
+export const connectMM = async () => {
+  let signer = null;
+  let provider;
+  if (window.ethereum == null) {
+    console.log("MetaMask not installed; using read-only defaults");
+    provider = ethers.getDefaultProvider();
+  } else {
+    provider = new ethers.BrowserProvider(window.ethereum);
+    signer = await provider.getSigner();
+  }
+
+  return [provider, signer];
 };
