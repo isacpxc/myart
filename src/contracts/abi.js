@@ -1,5 +1,6 @@
 import { Contract } from "ethers";
 import { connectMM } from "../services/metaConnection";
+import { TKaddr, NFTaddr } from "../util/contracts";
 
 const abi = [
   [
@@ -17,20 +18,12 @@ const abi = [
 
 export const createContractTK = async ([provider]) => {
   // const [provider] = await connectMM();
-  const TKcontract = new Contract(
-    "0x11812cb190736FcF572442f8c0C9012C0973b212",
-    abi[0],
-    provider
-  );
+  const TKcontract = new Contract(TKaddr, abi[0], provider);
   return TKcontract;
 };
 
 export const createContractNFT = async ([provider]) => {
-  const NFTcontract = new Contract(
-    "0xbab9F68224E3C060666C8cbD26473373488A647f",
-    abi[1],
-    provider
-  );
+  const NFTcontract = new Contract(NFTaddr, abi[1], provider);
 
   return NFTcontract;
 };
