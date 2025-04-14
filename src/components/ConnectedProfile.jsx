@@ -7,6 +7,7 @@ import { useEffect } from "react";
 export default function ConnectedProfile ({setConnected}) {
   const [balance, setBalance] = useState("?");
   const [uriTxt, setUriTxt] = useState("");
+  const [toMint, setToMint] = useState(0);
 
   useEffect(()=>{
     if (localStorage.balance) setBalance(localStorage.balance);
@@ -21,7 +22,7 @@ export default function ConnectedProfile ({setConnected}) {
       <>
           <span>Address: </span><input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} name="" id="" disabled />
           <br />
-          <span>balance: </span><span onLoad={(item)=>{
+          <span>balance: </span><span onLoad={()=>{
               if (localStorage.balance) setBalance(localStorage.balance);
           }}></span>{balance}<span> MATK </span>
           <button onClick={async () => { 
@@ -36,6 +37,15 @@ export default function ConnectedProfile ({setConnected}) {
               })
               .catch(err => +console.log("ERROR DURING TX: ", err))
            }}>Refresh Balance</button>
+          <br />
+          <input type="number"  value={toMint} onChange={(e)=>{setToMint(e.target.value)}} /><button onClick={async ()=>{
+            const signer = (await connectMM())[1];
+            const contractTK = await createContractTK([signer]);
+            console.log(signer);
+            console.log(contractTK);
+            const tx = await handleTx.mintTK(contractTK,toMint)
+            console.log(await tx.wait());
+          }}>MintTK</button>
           <br />
           <span>My Collection:</span> 
           <input type="text" value={uriTxt} onChange={(e)=>{
