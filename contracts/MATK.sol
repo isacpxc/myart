@@ -10,7 +10,7 @@ interface MANFT{
 contract MATK {
     mapping (address => uint) public myBalance;
     address private owner;
-    uint public priceTokenInWei = 10e16;
+    uint public priceTokenInWei = 10000000000000000;
     // myERC20 public TK;
     bool public paused = false;
     address private manft_contract_address;
