@@ -22,8 +22,8 @@ export const createContractTK = async ([provider]) => {
   return TKcontract;
 };
 
-export const createContractNFT = async ([provider]) => {
-  const NFTcontract = new Contract(NFTaddr, abi[1], provider);
+export const createContractNFT = async (signer) => {
+  const NFTcontract = new Contract(NFTaddr, abi[1], signer);
 
   return NFTcontract;
 };

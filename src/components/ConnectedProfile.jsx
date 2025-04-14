@@ -44,13 +44,13 @@ export default function ConnectedProfile ({setConnected}) {
             // console.log(uriTxt);
           }}/>
           <button onClick={async () => { 
-              const addressAcc = String(JSON.parse(localStorage.conn).address);
-              const contractNFT = await createContractNFT(await connectMM());
-              handleTx.safeMint(contractNFT,addressAcc,"uritest")
-              .then((res)=>{
-                  console.log("successful query");
-              })
-              .catch(err => console.log("ERROR DURING TX: ", err))
+            const addressAcc = String(JSON.parse(localStorage.conn).address);
+            const signer = (await connectMM())[1];
+            const contractNFT = await createContractNFT(signer);
+            console.log(contractNFT);
+            const tx = await handleTx.minNFT(contractNFT, addressAcc, uriTxt)
+            console.log(await tx.wait());
+
            }}>Add</button>
           <br />
           <button onClick={async ()=>{
