@@ -61,5 +61,5 @@
 
 .sidebar-icon:hover .subtitle-blink {
   scale: 1;
-  transition: all linear 0.2s;
+  transition: all linear 0.1s;
 }
