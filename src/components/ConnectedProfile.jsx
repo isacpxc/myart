@@ -64,7 +64,6 @@ export default function ConnectedProfile ({setConnected}) {
            }}>Add</button>
           <br />
           <button onClick={async ()=>{
-              () =>{setContracts(null)};
               handleLogout();
               setConnected(0);
           }}>logout</button>

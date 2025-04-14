@@ -7,7 +7,9 @@ import NotConnectedProfile from "./components/NotConnectedProfile";
 function Profile() {
     const [connected, setConnected] = useState(0);
 
-    useEffect(()=>{},[connected]); // watching connection
+    useEffect(()=>{
+        if (localStorage.getItem('conn') != undefined) setConnected(1);
+    },[connected]); // watching connection
 
 
     const ConnComponent = () => {
