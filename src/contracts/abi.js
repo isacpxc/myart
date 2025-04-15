@@ -11,6 +11,8 @@ const abi = [
   ],
   [
     // MANFT contract
+    "event e_minted(address indexed owner, uint256 toke_id)",
+    "event e_nft_transfer(uint _id, string _uri)",
     "function safeMint(address to, string memory uri) public returns (uint256)",
     "function tokenURI(uint256 tokenId) public view returns (string memory)",
   ],
