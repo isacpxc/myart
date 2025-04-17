@@ -47,7 +47,6 @@ export default function ConnectedProfile ({setConnected}) {
             console.log(await tx.wait());
           }}>MintTK</button>
           <br />
-          <span>My Collection:</span> 
           <input type="text" value={uriTxt} onChange={(e)=>{
             e.preventDefault();
             setUriTxt(e.target.value);
@@ -60,13 +59,23 @@ export default function ConnectedProfile ({setConnected}) {
             console.log(contractNFT);
             const tx = await handleTx.minNFT(contractNFT, addressAcc, uriTxt)
             console.log(await tx.wait());
-
-           }}>Add</button>
+            
+          }}>Add</button>
           <br />
           <button onClick={async ()=>{
-              handleLogout();
-              setConnected(0);
+            handleLogout();
+            setConnected(0);
           }}>logout</button>
+          <br />
+          <span>My Collection:</span> <button onClick={async ()=>{
+            const addressAcc = String(JSON.parse(localStorage.conn).address);
+            const provider = await (await connectMM())[0];
+            // console.log(provider);
+            const contractNFT = await createContractNFT(provider);
+            const filter = await contractNFT.filters.e_minted(addressAcc)
+            const events = await contractNFT.queryFilter(filter, -100);
+            console.log(events);
+          }}>see</button>
           <br />
           {/* <button onClick={()=>{showtest("cuzas")}}>test</button> */}
           <div className="hold-test-blocks">
