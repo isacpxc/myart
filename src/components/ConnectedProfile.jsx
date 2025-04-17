@@ -8,6 +8,7 @@ export default function ConnectedProfile ({setConnected}) {
   const [balance, setBalance] = useState("?");
   const [uriTxt, setUriTxt] = useState("");
   const [toMint, setToMint] = useState(0);
+  const [nft, setNft] = useState([]);
 
   useEffect(()=>{
     if (localStorage.balance) setBalance(localStorage.balance);
@@ -74,12 +75,13 @@ export default function ConnectedProfile ({setConnected}) {
             const contractNFT = await createContractNFT(provider);
             const filter = await contractNFT.filters.e_minted(addressAcc)
             const events = await contractNFT.queryFilter(filter, -100);
+            setNft(events);
             console.log(events);
           }}>see</button>
           <br />
           {/* <button onClick={()=>{showtest("cuzas")}}>test</button> */}
           <div className="hold-test-blocks">
-              {/* <div className="test-block"></div> */}
+            {nft.map(event => <div className="test-block"></div>)}
           </div>
       </>
   );
