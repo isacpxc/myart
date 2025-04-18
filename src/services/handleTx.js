@@ -17,7 +17,7 @@ export const mintNFT = async (contract, to, uri) => {
 };
 
 export const myNfts = async (contract, owner) => {
-  const result = await contract.myNfts(owner);
+  const result = await contract.returnMyNfts(owner);
   return result;
 };
 
