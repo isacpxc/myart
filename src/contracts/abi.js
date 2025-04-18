@@ -15,7 +15,7 @@ const abi = [
     "event e_nft_transfer(uint _id, string _uri)",
     "function safeMint(address to, string memory uri) public returns (uint256)",
     "function tokenURI(uint256 tokenId) public view returns (string memory)",
-    "function myNfts(address _owner) public view returns(unit256[])",
+    "function returnMyNfts (address _owner) public view returns (uint256[] memory)",
   ],
 ];
 
