@@ -12,6 +12,7 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
     uint256 private _nextTokenId;
     address private matk_contract_address;
     mapping (uint256 => uint256) private NFTprice;
+    mapping (address => uint256[]) private  myNfts;
 
     event e_minted(address indexed owner, uint256 toke_id);
     event e_nft_transfer(uint _id, string _uri);
@@ -37,6 +38,7 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
+        myNfts[to].push(tokenId);
         emit e_minted(to, tokenId);
         return tokenId;
     }
@@ -48,9 +50,25 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
     function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
-// remember to change to private after
-    function changeNFTOwner(address owner, address newOwner, uint tokenId) private {
-        super.transferFrom(owner, newOwner, tokenId);
+
+    function changeNFTOwner(address newOwner, uint tokenId) private {
+        super._update(newOwner, tokenId, address(0));
+    }
+
+    function removeElement(uint256 _tokenId, address _owner) private returns(bool){
+        uint256 index;
+        uint256 hold;
+        for (uint256 i=0;i<myNfts[_owner].length;i++){
+            if (myNfts[_owner][i] == _tokenId){
+                index = i;
+                break;
+            }
+        }
+        hold = myNfts[_owner][myNfts[_owner].length-1];
+        myNfts[_owner][myNfts[_owner].length-1] = myNfts[_owner][index];
+        myNfts[_owner][index] = hold;
+        myNfts[_owner].pop();
+        return true;
     }
 
     function changeTokenOwner(address newOwner, address currentOwner, uint id, string memory uri, string memory oldUri) external {
@@ -58,9 +76,17 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
         require(id < _nextTokenId, "id do not exist!");
         require(currentOwner == ownerOf(id), "You're not the owner of this NFT.");
         require(compareStrings(oldUri,tokenURI(id)),"the tokenId doesn't match this NFT");
+        changeNFTOwner(newOwner, id);
         _setTokenURI(id, uri);
-        changeNFTOwner(currentOwner, newOwner, id);
+        require(removeElement(id,currentOwner), "Something went wrong trying to update myNfts");
+        myNfts[newOwner].push(id);
         emit e_nft_transfer(id,uri);
+    }
+
+
+    
+    function returnMyNfts(address _owner) public view returns(uint[] memory){
+        return myNfts[_owner];
     }
 
 }
