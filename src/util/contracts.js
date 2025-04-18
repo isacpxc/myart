@@ -1,2 +1,2 @@
-export const TKaddr = "0x0f6C20908aCa852D75DeA6C687B7aCCed9d2E019";
-export const NFTaddr = "0xECec6b0e4318f3De22c23967cc5E2670bA4921DC";
+export const TKaddr = "0xd7D3104262c1d44ca27aae1391598517a18AB400";
+export const NFTaddr = "0x32336c78C9AAaf5F4E7eB73C3A3b0b20C086111c";
