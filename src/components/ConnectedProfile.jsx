@@ -58,7 +58,7 @@ export default function ConnectedProfile ({setConnected}) {
             const signer = (await connectMM())[1];
             const contractNFT = await createContractNFT(signer);
             console.log(contractNFT);
-            const tx = await handleTx.minNFT(contractNFT, addressAcc, uriTxt)
+            const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
             console.log(await tx.wait());
             
           }}>Add</button>
