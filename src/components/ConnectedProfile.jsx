@@ -14,9 +14,25 @@ export default function ConnectedProfile ({setConnected}) {
     if (localStorage.balance) setBalance(localStorage.balance);
   },[]);
 
+  useEffect(()=>{},[nft])
+
   const handleLogout = () => {
     localStorage.removeItem("conn");
     localStorage.removeItem("balance");
+  }
+
+  const handleGetNft = async () => {
+    const addressAcc = String(JSON.parse(localStorage.conn).address);
+    const provider = await (await connectMM())[0];
+    const contractNFT = await createContractNFT(provider);
+    const result = await handleTx.myNfts(contractNFT, addressAcc);
+    let hold = [];
+
+    for (let i=0;i<result.length;i++){
+      let uri = await handleTx.getNftById(contractNFT, i);
+      hold.push(uri)
+    }
+    setNft(hold);
   }
 
   return (
@@ -68,20 +84,11 @@ export default function ConnectedProfile ({setConnected}) {
             setConnected(0);
           }}>logout</button>
           <br />
-          <span>My Collection:</span> <button onClick={async ()=>{
-            const addressAcc = String(JSON.parse(localStorage.conn).address);
-            const provider = await (await connectMM())[0];
-            // console.log(provider);
-            const contractNFT = await createContractNFT(provider);
-            const filter = await contractNFT.filters.e_minted(addressAcc)
-            const events = await contractNFT.queryFilter(filter, -100);
-            setNft(events);
-            console.log(events);
-          }}>see</button>
+          <span>My Collection:</span> <button onClick={async ()=>{handleGetNft()}}>see</button>
           <br />
-          {/* <button onClick={()=>{showtest("cuzas")}}>test</button> */}
+          <button onClick={()=>{console.log(nft)}}>test</button>
           <div className="hold-test-blocks">
-            {nft.map(event => <div className="test-block"></div>)}
+            {nft.map(event => <div className="test-block" key={event}></div>)}
           </div>
       </>
   );
