@@ -11,7 +11,17 @@ export const mintTK = async (contract, value) => {
   return result;
 };
 
-export const minNFT = async (contract, to, uri) => {
+export const mintNFT = async (contract, to, uri) => {
   const result = await contract.safeMint(to, uri);
+  return result;
+};
+
+export const myNfts = async (contract, owner) => {
+  const result = await contract.myNfts(owner);
+  return result;
+};
+
+export const getNftById = async (contract, id) => {
+  const result = await contract.tokenURI(id);
   return result;
 };
