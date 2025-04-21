@@ -1,14 +1,18 @@
 import {connectMM} from "../services/metaConnection"
 import * as handleTx from "../services/handleTx"
 import { createContractNFT, createContractTK } from "../contracts/abi"
+import { getInfoFromCID } from "./../services/ipfsContact";
 import { useState } from "react";
 import { useEffect } from "react";
+import "./modal.css"
+
 
 export default function ConnectedProfile ({setConnected}) {
   const [balance, setBalance] = useState("?");
   const [uriTxt, setUriTxt] = useState("");
   const [toMint, setToMint] = useState(0);
   const [nft, setNft] = useState([]);
+  const [nftjson, setNftJson] = useState({"img":"", "name":"","price":0,"desc":""});
 
   useEffect(()=>{
     if (localStorage.balance) setBalance(localStorage.balance);
@@ -32,6 +36,8 @@ export default function ConnectedProfile ({setConnected}) {
       let uri = await handleTx.getNftById(contractNFT, i);
       hold.push(uri)
     }
+    // await getInfoFromCID(hold[0])
+
     setNft(hold);
   }
 
@@ -57,14 +63,55 @@ export default function ConnectedProfile ({setConnected}) {
     console.log(await tx.wait());
   }
 
+  const showModal = ()=>{
+    const modal = document.getElementById('modal');
+    modal.showModal();
+  }
+  
+  const closeModal = ()=>{
+    const modal = document.getElementById('modal');
+    setUriTxt("");
+    modal.close();
+  }
+
+  const handleDownloadNft = async ()=>{
+    const imgNFT = document.getElementById("imgNFT");
+    const nameNFT = document.getElementById("nameNFT");
+    const priceNFT = document.getElementById("priceNFT");
+    const descNFT = document.getElementById("descNFT");
+    if (imgNFT.value){
+      const reader = new FileReader();
+      reader.readAsDataURL(imgNFT.files[0])
+      reader.onload = ()=>{
+        const template = nftjson;
+        template.img = reader.result;
+        template.name = nameNFT.value;
+        template.price = priceNFT.value;
+        template.desc = descNFT.value;
+        const a = document.createElement("a");
+        const file = new Blob([JSON.stringify(template)],{type: "text/plain"});
+        a.href = URL.createObjectURL(file);
+        a.download = "nft.json";
+        a.click();
+      }
+    } else alert("Você esqueceu a imagem");
+    
+  }
+
+  const tryGetFromIPFS = async ()=>{
+    const hold = "QmR5VZp9yohes1SuMT12Vdk5GU5kNDcha7ztTUxd8fpdda"
+    await getInfoFromCID("QmaQNcnJzHiLFcmNwfY3kiScoJpM2aymrJ1Qn29JmxFVru");
+  }
+
   const handleAddNFT = async ()=>{
-    const addressAcc = String(JSON.parse(localStorage.conn).address);
-    const signer = (await connectMM())[1];
-    const contractNFT = await createContractNFT(signer);
-    console.log(contractNFT);
-    // adicionar condicional para se uriTxt for null
-    const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
-    console.log(await tx.wait());
+    if (uriTxt){
+      const addressAcc = String(JSON.parse(localStorage.conn).address);
+      const signer = (await connectMM())[1];
+      const contractNFT = await createContractNFT(signer);
+      console.log(contractNFT);
+      const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
+      console.log(await tx.wait());
+    } else alert("campo CID vazio");
   }
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////// 
@@ -84,13 +131,13 @@ export default function ConnectedProfile ({setConnected}) {
             handleMintTK();
           }}>MintTK</button>
           <br />
-          <input type="text" value={uriTxt} onChange={(e)=>{
+          {/* <input type="text" value={uriTxt} onChange={(e)=>{
             e.preventDefault();
             setUriTxt(e.target.value);
             // console.log(uriTxt);
-          }}/>
+          }}/> */}
           <button onClick={async () => { 
-            handleAddNFT();
+            showModal();
           }}>Add</button>
           <br />
           <button onClick={async ()=>{
@@ -100,10 +147,22 @@ export default function ConnectedProfile ({setConnected}) {
           <br />
           <span>My Collection:</span> <button onClick={handleGetNft}>see</button>
           <br />
-          <button onClick={()=>{console.log(nft)}}>test</button>
+          {/* <button onClick={()=>{console.log(nft)}}>test nft state</button><br />
+          <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
           <div className="hold-test-blocks">
             {nft.map(event => <div className="test-block" key={event}></div>)}
           </div>
+          <dialog id="modal">
+              <button onClick={closeModal}>close</button><br />
+              <input type="file" accept="image/jpeg" id="imgNFT"/><br />
+              <input type="text" placeholder="nameNFT" id="nameNFT"/><br />
+              <input type="number" placeholder="priceNFT" id="priceNFT"/><br />
+              <input type="text" placeholder="desc" id="descNFT"/><br />
+              <button onClick={()=>{handleDownloadNft()}}>download</button><br />
+              {/* <button onClick={()=>{console.log(nftjson)}}>test nftemplate</button><br /> */}
+              <input type="text" placeholder="cid" value={uriTxt} onChange={e=>{setUriTxt(e.target.value)}}/><br />
+              <button onClick={handleAddNFT}>Add nft</button>
+          </dialog>
       </>
   );
 } // end of ConnectedProfile
