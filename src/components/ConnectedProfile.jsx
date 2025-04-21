@@ -1,9 +1,9 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import {connectMM} from "../services/metaConnection"
 import * as handleTx from "../services/handleTx"
 import { createContractNFT, createContractTK } from "../contracts/abi"
 import { getInfoFromCID } from "./../services/ipfsContact";
-import { useState } from "react";
-import { useEffect } from "react";
 import "./modal.css"
 
 
@@ -33,7 +33,8 @@ export default function ConnectedProfile ({setConnected}) {
     let hold = [];
 
     for (let i=0;i<result.length;i++){
-      let uri = await handleTx.getNftById(contractNFT, i);
+      let cid = await handleTx.getNftById(contractNFT, i);
+      let metadata = await getInfoFromCID(cid);
       hold.push(uri)
     }
     // await getInfoFromCID(hold[0])
@@ -100,7 +101,7 @@ export default function ConnectedProfile ({setConnected}) {
 
   const tryGetFromIPFS = async ()=>{
     const hold = "QmR5VZp9yohes1SuMT12Vdk5GU5kNDcha7ztTUxd8fpdda"
-    await getInfoFromCID("QmaQNcnJzHiLFcmNwfY3kiScoJpM2aymrJ1Qn29JmxFVru");
+    await getInfoFromCID("QmZMLspCaJqDvGFKPHyscvMH26F16ZwC9Y4b9hqrc3tZAt");
   }
 
   const handleAddNFT = async ()=>{
@@ -147,8 +148,8 @@ export default function ConnectedProfile ({setConnected}) {
           <br />
           <span>My Collection:</span> <button onClick={handleGetNft}>see</button>
           <br />
-          {/* <button onClick={()=>{console.log(nft)}}>test nft state</button><br />
-          <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
+          <button onClick={()=>{console.log(nft)}}>test nft state</button><br />
+          <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br />
           <div className="hold-test-blocks">
             {nft.map(event => <div className="test-block" key={event}></div>)}
           </div>
