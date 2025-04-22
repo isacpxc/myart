@@ -35,7 +35,7 @@ export default function ConnectedProfile ({setConnected}) {
     for (let i=0;i<result.length;i++){
       let cid = await handleTx.getNftById(contractNFT, i);
       let metadata = await getInfoFromCID(cid);
-      hold.push(uri)
+      hold.push(metadata)
     }
     // await getInfoFromCID(hold[0])
 
@@ -101,7 +101,7 @@ export default function ConnectedProfile ({setConnected}) {
 
   const tryGetFromIPFS = async ()=>{
     const hold = "QmR5VZp9yohes1SuMT12Vdk5GU5kNDcha7ztTUxd8fpdda"
-    await getInfoFromCID("QmZMLspCaJqDvGFKPHyscvMH26F16ZwC9Y4b9hqrc3tZAt");
+    await getInfoFromCID("Qme7yJkCBFoSxku4fwD81GknSmcoCDhgzH5BZ5atZFD771");
   }
 
   const handleAddNFT = async ()=>{
@@ -149,9 +149,9 @@ export default function ConnectedProfile ({setConnected}) {
           <span>My Collection:</span> <button onClick={handleGetNft}>see</button>
           <br />
           <button onClick={()=>{console.log(nft)}}>test nft state</button><br />
-          <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br />
+          {/* <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
           <div className="hold-test-blocks">
-            {nft.map(event => <div className="test-block" key={event}></div>)}
+            {nft.map(event => <div className="test-block" key={event.name} style={{background: "url("+event.img+")", backgroundSize: "cover"}}></div>)}
           </div>
           <dialog id="modal">
               <button onClick={closeModal}>close</button><br />
