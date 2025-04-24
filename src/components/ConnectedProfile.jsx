@@ -31,13 +31,11 @@ export default function ConnectedProfile ({setConnected}) {
     const contractNFT = await createContractNFT(provider);
     const result = await handleTx.myNfts(contractNFT, addressAcc);
     let hold = [];
-
-    for (let i=0;i<result.length;i++){
-      let cid = await handleTx.getNftById(contractNFT, i);
+    for (let i=0;i<result.length;i++){   
+      let cid = await handleTx.getNftById(contractNFT, result[i]);
       let metadata = await getInfoFromCID(cid);
       hold.push(metadata)
     }
-    // await getInfoFromCID(hold[0])
 
     setNft(hold);
   }
@@ -152,6 +150,7 @@ export default function ConnectedProfile ({setConnected}) {
           {/* <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
           <div className="hold-test-blocks">
             {nft.map(event => <div className="test-block" key={event.name} style={{background: "url("+event.img+")", backgroundSize: "cover"}}></div>)}
+            {/* <div className="test-block" key={event.name} style={{background: "url("+event.img+")", backgroundSize: "cover"}}></div> */}
           </div>
           <dialog id="modal">
               <button onClick={closeModal}>close</button><br />
