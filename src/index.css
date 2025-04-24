@@ -28,17 +28,11 @@ body {
   height: 100vh;
 } */
 
-.hold-test-blocks {
+.hold-nft-boxes {
+  padding-top: 10px;
   display: flex;
   flex-wrap: wrap;
-}
-
-.test-block {
-  height: 100px;
-  width: 100px;
-  background-color: aqua;
-  margin-left: 2px;
-  margin-bottom: 2px;
+  justify-content: center;
 }
 
 #markdown-container {
@@ -50,3 +44,15 @@ body {
 #markdown-container ul {
   list-style-type: none;
 }
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.pad-left-2{
+  padding-left: 2px;
+}
+
+
+
