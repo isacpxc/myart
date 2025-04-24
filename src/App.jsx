@@ -1,20 +1,8 @@
 import Sidebar from "./components/Sidebar.jsx"
 import Main from "./components/Main.jsx"
+import HomePage from "./components/Home.jsx"
 
 function App() {
-
-  const HomePage = () => {
-    return (
-      <>
-        <span>Search Collection by Address</span>
-        <br />
-        <input type="text" /><button>search</button>
-        <div className="hold-nft-boxes">
-          {/* <div className="nft-box"></div> */}
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
