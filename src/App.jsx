@@ -9,8 +9,8 @@ function App() {
         <span>Search Collection by Address</span>
         <br />
         <input type="text" /><button>search</button>
-        <div className="hold-test-blocks">
-          {/* <div className="test-block"></div> */}
+        <div className="hold-nft-boxes">
+          {/* <div className="nft-box"></div> */}
         </div>
       </>
     );
