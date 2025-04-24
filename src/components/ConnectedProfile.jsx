@@ -4,6 +4,7 @@ import {connectMM} from "../services/metaConnection"
 import * as handleTx from "../services/handleTx"
 import { createContractNFT, createContractTK } from "../contracts/abi"
 import { getInfoFromCID } from "./../services/ipfsContact";
+import NFTbox from "./NFTbox";
 import "./modal.css"
 
 
@@ -34,6 +35,7 @@ export default function ConnectedProfile ({setConnected}) {
     for (let i=0;i<result.length;i++){   
       let cid = await handleTx.getNftById(contractNFT, result[i]);
       let metadata = await getInfoFromCID(cid);
+      metadata.id = parseInt(result[i]);
       hold.push(metadata)
     }
 
@@ -148,9 +150,9 @@ export default function ConnectedProfile ({setConnected}) {
           <br />
           <button onClick={()=>{console.log(nft)}}>test nft state</button><br />
           {/* <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
-          <div className="hold-test-blocks">
-            {nft.map(event => <div className="test-block" key={event.name} style={{background: "url("+event.img+")", backgroundSize: "cover"}}></div>)}
-            {/* <div className="test-block" key={event.name} style={{background: "url("+event.img+")", backgroundSize: "cover"}}></div> */}
+          <div className="hold-nft-boxes">
+            {nft.map(event => <NFTbox owner={JSON.parse(localStorage.getItem("conn")).address} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price}/>)}
+            {/* <NFTbox key={`event.name`} /> */}
           </div>
           <dialog id="modal">
               <button onClick={closeModal}>close</button><br />
