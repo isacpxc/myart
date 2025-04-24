@@ -45,11 +45,11 @@ export default function ConnectedProfile ({setConnected}) {
   const handleRefreshBalance = async ()=> {
     const addressAcc = String(JSON.parse(localStorage.conn).address);
     const contractTK = await createContractTK(await connectMM());
-    console.log(contractTK);
+    // console.log(contractTK);
     handleTx.getBalance(contractTK,addressAcc)
     .then((res)=>{
         localStorage.setItem("balance",res);
-        console.log("successful query");
+        // console.log("successful query");
         setBalance(res);
     })
     .catch(err => +console.log("ERROR DURING TX: ", err))
@@ -58,10 +58,10 @@ export default function ConnectedProfile ({setConnected}) {
   const handleMintTK = async ()=>{
     const signer = (await connectMM())[1];
     const contractTK = await createContractTK([signer]);
-    console.log(signer);
-    console.log(contractTK);
+    // console.log(signer);
+    // console.log(contractTK);
     const tx = await handleTx.mintTK(contractTK,toMint)
-    console.log(await tx.wait());
+    // console.log(await tx.wait());
   }
 
   const showModal = ()=>{
@@ -109,9 +109,9 @@ export default function ConnectedProfile ({setConnected}) {
       const addressAcc = String(JSON.parse(localStorage.conn).address);
       const signer = (await connectMM())[1];
       const contractNFT = await createContractNFT(signer);
-      console.log(contractNFT);
+      // console.log(contractNFT);
       const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
-      console.log(await tx.wait());
+      // console.log(await tx.wait());
     } else alert("campo CID vazio");
   }
   ////////////////////////////////////////////////////////////////////////////////
@@ -148,7 +148,7 @@ export default function ConnectedProfile ({setConnected}) {
           <br />
           <span>My Collection:</span> <button onClick={handleGetNft}>see</button>
           <br />
-          <button onClick={()=>{console.log(nft)}}>test nft state</button><br />
+          {/* <button onClick={()=>{console.log(nft)}}>test nft state</button><br /> */}
           {/* <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
           <div className="hold-nft-boxes">
             {nft.map(event => <NFTbox owner={JSON.parse(localStorage.getItem("conn")).address} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price}/>)}
