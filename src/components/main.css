@@ -2,6 +2,6 @@
   width: 95%;
   background-color: var(--color-dark-blue);
   min-height: 100vh;
-  float: right;
+  /* float: right; */
   padding: 2vw;
 }

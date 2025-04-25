@@ -14,11 +14,23 @@
   --color-neon: aqua;
 }
 
+html{
+  background-color: var(--color-primary);
+}
+
 body {
   /* min-width: 320px;
   min-height: 100vh; */
   /* display: flex;
   flex-direction: column; */
+  min-width: 215px;
+  overflow: hidden;
+}
+
+#root{
+  display: flex;
+  position: relative;
+  min-width: 215px;
 }
 
 /* .dashboard {
@@ -33,6 +45,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-height: 75vh;
+  overflow-y: auto;
 }
 
 #markdown-container {

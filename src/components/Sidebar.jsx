@@ -18,7 +18,7 @@ function Sidebar() {
                     <SideBarIcon icon={<CgProfile /*size={iconSize}*/ />} text="Profile" />
                 </NavLink>
             </div>
-            <div className="sidebar-section">
+            <div className="sidebar-section mg-b-20">
                 <NavLink to="/settings">
                     <SideBarIcon icon={<FaGear /*size={iconSize}*/ />} text="Settings" />
                 </NavLink>
