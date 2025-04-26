@@ -48,10 +48,18 @@
  background-color: #FF5C16;
  width: 50%;  
  display: flex;
- align-items: center;
- justify-content: center;
  color: white;
  border-radius: 10px;
+ align-items: center;
+ justify-content: center;
  border: 2px solid #FF8D5D;
  cursor: pointer;
+ text-align: center;
+ font-size: 1rem;
+}
+
+@media only screen and (max-width: 703px) {
+  #login-btn{
+    font-size: 2vw;
+  }
 }

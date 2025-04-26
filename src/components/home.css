@@ -6,7 +6,12 @@
 }
 
 #home-title{
-  font-size: 2rem;
+  font-size: 1.5rem;
+  border: 2px solid var(--color-secondary);
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: white;
 }
 
 #search-home{
@@ -22,9 +27,11 @@
   padding-left: 5px;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: bolder;
-  color: #605e5e;
+  color: white;
   background-color: var(--color-dark-blue);
   border: 1px solid var(--color-neon);
+  min-width: 500px;
+  text-align: center;
 }
 
 #search-home div {
@@ -41,4 +48,10 @@
   background-color: var(--color-neon);
   transform: translateY(4px);
   box-shadow: 0px 2px 0px 0px var(--color-primary);
+}
+
+@media only screen and (max-width:703px){
+  #search-home input{
+    min-width: 200px;
+  }
 }
