@@ -4,7 +4,11 @@ import {connectMM} from "../services/metaConnection"
 import * as handleTx from "../services/handleTx"
 import { createContractNFT, createContractTK } from "../contracts/abi"
 import { getInfoFromCID } from "./../services/ipfsContact";
+import { IoLogOutOutline } from "react-icons/io5";
+import { IoMdRefresh, IoMdAdd } from "react-icons/io";
+import { TbBrandCashapp } from "react-icons/tb";
 import NFTbox from "./NFTbox";
+import "./connected.css"
 import "./modal.css"
 
 
@@ -119,7 +123,29 @@ export default function ConnectedProfile ({setConnected}) {
   ////////////////////////////////////////////////////////////////////////////////
   return (
       <>
-          <span>Address: </span><input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} name="" id="" disabled />
+        <div id="header-connected">
+          <div id="conn-h-1">
+            <div id="addr-logout">
+              <input type="text" placeholder="Wallet Address" disabled/>
+              <div title="Logout"><IoLogOutOutline/></div>
+            </div>
+            <div id="matk-func">
+              <div id="conn-buy-ref">
+                <div id="btn-buy"><TbBrandCashapp/></div>
+                <div id="btn-ref"><IoMdRefresh/></div>
+              </div>
+              <div id="conn-balance">
+                <span>100</span><div></div>
+              </div>
+
+            </div>
+          </div>
+          <div id="conn-h-2">
+            <span>My Collection</span>
+            <div><IoMdAdd/></div>
+          </div>
+        </div>
+          {/* <span>Address: </span><input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} name="" id="" disabled />
           <br />
           <span>balance: </span><span onLoad={()=>{
               if (localStorage.balance) setBalance(localStorage.balance);
@@ -131,13 +157,13 @@ export default function ConnectedProfile ({setConnected}) {
           <input type="number"  value={toMint} onChange={(e)=>{setToMint(e.target.value)}} /><button onClick={async ()=>{
             handleMintTK();
           }}>MintTK</button>
-          <br />
+          <br /> */}
           {/* <input type="text" value={uriTxt} onChange={(e)=>{
             e.preventDefault();
             setUriTxt(e.target.value);
             // console.log(uriTxt);
           }}/> */}
-          <button onClick={async () => { 
+          {/* <button onClick={async () => { 
             showModal();
           }}>Add</button>
           <br />
@@ -147,24 +173,25 @@ export default function ConnectedProfile ({setConnected}) {
           }}>logout</button>
           <br />
           <span>My Collection:</span> <button onClick={handleGetNft}>see</button>
-          <br />
+          <br /> */}
           {/* <button onClick={()=>{console.log(nft)}}>test nft state</button><br /> */}
           {/* <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
           <div className="hold-nft-boxes">
             {nft.map(event => <NFTbox owner={JSON.parse(localStorage.getItem("conn")).address} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price}/>)}
-            {/* <NFTbox key={`event.name`} /> */}
+            <NFTbox key={`event.name`} />
+            <NFTbox key={`event.name`} />
           </div>
-          <dialog id="modal">
+          {/* <dialog id="modal">
               <button onClick={closeModal}>close</button><br />
               <input type="file" accept="image/jpeg" id="imgNFT"/><br />
               <input type="text" placeholder="nameNFT" id="nameNFT"/><br />
               <input type="number" placeholder="priceNFT" id="priceNFT"/><br />
               <input type="text" placeholder="desc" id="descNFT"/><br />
               <button onClick={()=>{handleDownloadNft()}}>download</button><br />
-              {/* <button onClick={()=>{console.log(nftjson)}}>test nftemplate</button><br /> */}
+              <button onClick={()=>{console.log(nftjson)}}>test nftemplate</button><br />
               <input type="text" placeholder="cid" value={uriTxt} onChange={e=>{setUriTxt(e.target.value)}}/><br />
               <button onClick={handleAddNFT}>Add nft</button>
-          </dialog>
+          </dialog> */}
       </>
   );
 } // end of ConnectedProfile

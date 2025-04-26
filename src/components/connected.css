@@ -1,46 +1,223 @@
-#conn-profile-header-1{
+#header-connected{
+  height: 20vh;
+  /* background-color: pink; */
   display: flex;
-  /* position: relative; */
-  background-color: rgb(0, 255, 42);
-  min-height: 50px;
-  /* justify-content: space-between;
-  align-content: center;
-  flex-wrap: wrap; */
-  /* margin-bottom: 100px; */
-  /* min-width: 640px; */
+  flex-direction: column;
 }
 
-#conn-profile-header-1 input {
-  background-color: brown;
-  flex-basis:50%;
-  min-width: 470px;
-  min-height: 50px;
-}
-
-#conn-profile-header-1 div{
-  position: relative;
-  background-color: rgb(179, 23, 145);
-  flex-basis: 20%;
-  min-width: 170px;
-  min-height: 50px;
-}
-
-#conn-profile-header-2{
-  position: relative;
+#conn-h-1{
+  /* background-color: rgb(0, 255, 42); */
+  flex: 1.2;
   display: flex;
-  background-color: aquamarine;
-  height: 50px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: white; 
 }
-/* 
-@media only screen and (max-width: 704px){
-  #conn-profile-header-1{
+
+#addr-logout{
+  flex-basis: 40%;
+  /* background-color: brown; */
+  min-width: 214px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#addr-logout input{
+  flex: 0.88;
+  height: 50%;
+  outline: none;
+  border-radius: 10px;
+  background-color: var(--color-secondary);
+  color: white !important;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#addr-logout input::placeholder{
+  color: white;
+}
+
+#addr-logout div{
+  background-color: red;
+  flex: 0.1;
+  height: 50%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3vw;
+  cursor: pointer;
+} 
+
+#addr-logout div:active{
+  background-color: white;
+  color: red;
+}
+
+#matk-func{
+  flex-basis: 30%;
+  /* background-color: yellow; */
+  min-width: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#matk-func #conn-buy-ref{
+  /* background-color: blueviolet; */
+  height: 50%;
+  flex: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 2vw;
+  color: black;
+  margin-right: 10px;
+
+}
+
+#conn-buy-ref #btn-buy{
+  flex: 0.25;
+  height: 100%;
+  cursor: pointer;
+  background-color: rgb(49, 195, 49);
+  border-radius: 10px;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#conn-buy-ref #btn-buy:active{
+  background-color: white;
+  color: rgb(49, 195, 49);
+}
+
+#conn-buy-ref #btn-ref{
+  background-color: white;
+  flex: 0.25;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  margin-left: 5px;
+}
+
+#conn-buy-ref #btn-ref:active{
+  background-color: black;
+  color: white;
+}
+
+#matk-func #conn-balance{
+  /* background-color: cadetblue; */
+  height: 60%;
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.5rem;
+}
+
+#conn-balance span {
+  color: #EFAE16;
+  text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+             1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+}
+
+#conn-balance div{
+  background-image: url("../assets/cartoon-symbol-tk.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  animation: coin-turn 2s infinite linear;
+  margin-left: 5px;
+}
+
+/* conn-h-2 /////////////////////////////////////////////////////////////////////// conn-h-2 */
+
+#conn-h-2{
+  /* background-color: aquamarine; */
+  flex: 0.4;
+  display: flex;
+}
+
+#conn-h-2 span{
+  flex: 0.1;
+  background-color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-secondary);
+  border-radius: 10px;
+  color: white;
+  height: 60%;
+  font-size: 1vw;
+  padding: 10px;
+}
+
+#conn-h-2 div {
+  flex: 0.03;
+  background-color: rgb(96, 224, 41);
+  margin-left: 5px;
+  color: white;
+  font-size: 2vw;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 60%;
+}
+
+#conn-h-2 div:active{
+  background-color: white;
+  color: rgb(96, 224, 41);
+}
+
+@media only screen and (max-width: 703px){
+  #conn-h-2{
+    justify-content: center;
+  }
+
+  #header-connected{
+    height: 25vh;
+  }
+
+  #conn-h-1{
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    min-width: 1px;
+    justify-content: center;
   }
 
-  #conn-profile-header-1 input{
-    margin-bottom: 10px;
+  #addr-logout{
+    width: 80%;
   }
-} */
+
+  #matk-func{
+    margin-top: 5px;
+  }
+
+  #conn-h-2 span {
+    flex: 0.4;
+    height: 60%;
+    font-size: 3vw;
+
+  }
+
+  #conn-h-2 div {
+    flex: 0.1;
+    height: 60%;
+  }
+
+  #addr-logout input{
+    min-width: 150px;
+  }
+
+}

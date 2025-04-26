@@ -6,7 +6,7 @@
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-weight: bold;
   color: var(--color-neon);
   --color-primary: #042847;
   --color-secondary: #6186b0;

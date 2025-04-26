@@ -5,7 +5,7 @@
 
 .nft-box {
   position: relative;
-  height: 270px;
+  min-height: 270px;
   min-width:  270px;
   background-color: aqua;
   margin-right: 5px;
@@ -90,6 +90,11 @@
 }
 
 
-
+@media only screen and (max-width: 703px){
+  .nft-box{
+    min-height: 200px;
+    min-width:  200px;
+  }
+}
 
 
