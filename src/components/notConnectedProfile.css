@@ -1,0 +1,57 @@
+@keyframes up-down {
+  0%{
+    top: 50%;
+  }
+
+  50%{
+    top: 47%;
+  }
+
+  100%{
+    top: 50%;
+  }
+} 
+
+#hold-login{
+  position: relative;
+  height: 50%;
+  width: 30%;
+  /* background-color: blueviolet; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  animation: up-down 2s ease-in-out infinite;
+}
+
+#metamask-svg{
+ flex: 0.4;
+ /* background-color: antiquewhite; */
+ width: 30%;
+ font-size: 2vw;
+ background-image: url("../assets/MetaMask-icon-Fox.svg");
+ background-repeat: no-repeat;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-position: 50%;
+}
+
+#login-btn{
+ flex: 0.15;
+ background-color: #FF5C16;
+ width: 50%;  
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ border-radius: 10px;
+ border: 2px solid #FF8D5D;
+ cursor: pointer;
+}

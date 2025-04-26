@@ -1,4 +1,5 @@
 import {connectMM} from "../services/metaConnection"
+import "./notConnectedProfile.css"
 
 export default function NotConnectedProfile({setConnected}) {
   const handleConnection = async ()=>{
@@ -9,9 +10,9 @@ export default function NotConnectedProfile({setConnected}) {
 
   return (
       <>
-          <span>Not Connected</span>
-          <br />
-          <button onClick={async ()=>{
+        <main id="hold-login">
+          <div id="metamask-svg"></div>
+          <span id="login-btn" onClick={async ()=>{
               handleConnection()
               .then( async (res) => {
                   console.log("entrou");
@@ -20,7 +21,8 @@ export default function NotConnectedProfile({setConnected}) {
                   setConnected(1);
               })
               .catch(err => {console.log("ERROR TRYING CONNECTION: ",err)})
-          }}>Login With Metamask</button>
+          }}>Login With MetaMask</span>
+        </main>
       </>
   );
 }
