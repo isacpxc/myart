@@ -21,6 +21,7 @@ export default function ConnectedProfile ({setConnected}) {
 
   useEffect(()=>{
     if (localStorage.balance) setBalance(localStorage.balance);
+    handleGetNft();
   },[]);
 
   useEffect(()=>{},[nft])
@@ -28,6 +29,9 @@ export default function ConnectedProfile ({setConnected}) {
   const handleLogout = () => {
     localStorage.removeItem("conn");
     localStorage.removeItem("balance");
+    setNft([]);
+    setNftJson({"img":"", "name":"","price":0,"desc":""});
+    setConnected(0);
   }
 
   const handleGetNft = async () => {
@@ -126,16 +130,16 @@ export default function ConnectedProfile ({setConnected}) {
         <div id="header-connected">
           <div id="conn-h-1">
             <div id="addr-logout">
-              <input type="text" placeholder="Wallet Address" disabled/>
-              <div title="Logout"><IoLogOutOutline/></div>
+              <input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} disabled/>
+              <div title="Logout" onClick={handleLogout}><IoLogOutOutline/></div>
             </div>
             <div id="matk-func">
               <div id="conn-buy-ref">
                 <div id="btn-buy"><TbBrandCashapp/></div>
-                <div id="btn-ref"><IoMdRefresh/></div>
+                <div id="btn-ref" onClick={handleRefreshBalance}><IoMdRefresh/></div>
               </div>
               <div id="conn-balance">
-                <span>100</span><div></div>
+                <span>{balance}</span><div></div>
               </div>
 
             </div>
@@ -178,8 +182,7 @@ export default function ConnectedProfile ({setConnected}) {
           {/* <button onClick={()=>{tryGetFromIPFS()}}>test get info IPFS</button><br /> */}
           <div className="hold-nft-boxes">
             {nft.map(event => <NFTbox owner={JSON.parse(localStorage.getItem("conn")).address} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price}/>)}
-            <NFTbox key={`event.name`} />
-            <NFTbox key={`event.name`} />
+            {/* <NFTbox key={`event.name`} /> */}
           </div>
           {/* <dialog id="modal">
               <button onClick={closeModal}>close</button><br />
