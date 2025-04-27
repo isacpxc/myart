@@ -6,7 +6,7 @@ export const getBalance = async (contract, address) => {
 };
 
 export const mintTK = async (contract, value) => {
-  const amount = String(value * 10000000000000000);
+  const amount = String(parseInt(value) * 10000000000000000);
   const result = await contract.mint_MATK({ value: amount });
   return result;
 };
