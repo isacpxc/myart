@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import {connectMM} from "../services/metaConnection"
-import * as handleTx from "../services/handleTx"
-import { createContractNFT, createContractTK } from "../contracts/abi"
+import {connectMM} from "../services/metaConnection";
+import * as handleTx from "../services/handleTx";
+import { createContractNFT, createContractTK } from "../contracts/abi";
 import { getInfoFromCID } from "./../services/ipfsContact";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdRefresh, IoMdAdd } from "react-icons/io";
 import { TbBrandCashapp } from "react-icons/tb";
 import NFTbox from "./NFTbox";
-import "./connected.css"
-import "./modal.css"
+import Modal from "./Modal";
+import "./connected.css";
+import "./modal.css";
 
 
 export default function ConnectedProfile ({setConnected}) {
   const [balance, setBalance] = useState("?");
   const [uriTxt, setUriTxt] = useState("");
-  const [toMint, setToMint] = useState(0);
+  // const [toMint, setToMint] = useState(0);
   const [nft, setNft] = useState([]);
   const [nftjson, setNftJson] = useState({"img":"", "name":"","price":0,"desc":""});
+  const [modalId,setModalId] = useState(0);
 
   useEffect(()=>{
     if (localStorage.balance) setBalance(localStorage.balance);
@@ -63,24 +65,13 @@ export default function ConnectedProfile ({setConnected}) {
     .catch(err => +console.log("ERROR DURING TX: ", err))
   }
 
-  const handleMintTK = async ()=>{
+  const handleMintTK = async (amount)=>{
     const signer = (await connectMM())[1];
     const contractTK = await createContractTK([signer]);
     // console.log(signer);
     // console.log(contractTK);
-    const tx = await handleTx.mintTK(contractTK,toMint)
+    const tx = await handleTx.mintTK(contractTK,amount)
     // console.log(await tx.wait());
-  }
-
-  const showModal = ()=>{
-    const modal = document.getElementById('modal');
-    modal.showModal();
-  }
-  
-  const closeModal = ()=>{
-    const modal = document.getElementById('modal');
-    setUriTxt("");
-    modal.close();
   }
 
   const handleDownloadNft = async ()=>{
@@ -130,13 +121,15 @@ export default function ConnectedProfile ({setConnected}) {
         <div id="header-connected">
           <div id="conn-h-1">
             <div id="addr-logout">
-              <input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} disabled/>
+              <input type="text" title="Wallet Address" placeholder={JSON.parse(localStorage.getItem('conn')).address} disabled/>
               <div title="Logout" onClick={handleLogout}><IoLogOutOutline/></div>
             </div>
             <div id="matk-func">
               <div id="conn-buy-ref">
-                <div id="btn-buy"><TbBrandCashapp/></div>
-                <div id="btn-ref" onClick={handleRefreshBalance}><IoMdRefresh/></div>
+                <div id="btn-buy" title="buy token" onClick={()=>{
+                  setModalId(1);
+                }}><TbBrandCashapp/></div>
+                <div id="btn-ref" title="refresh balance" onClick={handleRefreshBalance}><IoMdRefresh/></div>
               </div>
               <div id="conn-balance">
                 <span>{balance}</span><div></div>
@@ -145,10 +138,11 @@ export default function ConnectedProfile ({setConnected}) {
             </div>
           </div>
           <div id="conn-h-2">
-            <span>My Collection</span>
-            <div><IoMdAdd/></div>
+            <span title="My Collection">My Collection</span>
+            <div title="add nft" onClick={()=>{setModalId(2);}}><IoMdAdd/></div>
           </div>
         </div>
+        <Modal id={modalId} setId={setModalId} handleMintTK={handleMintTK}/>
           {/* <span>Address: </span><input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} name="" id="" disabled />
           <br />
           <span>balance: </span><span onLoad={()=>{
