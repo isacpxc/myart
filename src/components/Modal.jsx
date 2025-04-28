@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./modal.css"; 
 import { RiHandCoinLine } from "react-icons/ri";
-import { IoMdCloudUpload } from "react-icons/io";
+import { IoMdCloudUpload, IoMdRefresh } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export default function Modal(props){
   const [amount, setAmount] = useState('');
@@ -92,5 +93,33 @@ export default function Modal(props){
         }}>X</div>
       </div>
     );
-  }
+  } else if (props.id == 4) {
+    const backdropDiv = document.getElementById("backdrop");
+    backdropDiv.classList.add("active-backdrop");
+
+    return (
+      <div id="modal">
+        <input type="number" className="input-pattern" placeholder="New Price" value={props.newPrice} onChange={(e)=>{props.setNewPrice(e.target.value)}}></input>
+        <div className="btn mg-l-5" id="cid-sender" onClick={()=>{
+          console.log(props.nftUpdated); // proceed...
+        }}>Buy</div>
+        <div id="close-modal" title="close" onClick={()=>{
+          backdropDiv.classList.remove("active-backdrop");
+          props.setModalHome(0);
+        }}>X</div>
+      </div>
+    );
+  } else if (props.id == 5) { // load modal 
+    const backdropDiv = document.getElementById("backdrop");
+    backdropDiv.classList.add("active-backdrop");
+    return <div id="modal"><span id="loading"><IoMdRefresh/></span></div>
+  } else if (props.id == 6) { // success modal
+    const backdropDiv = document.getElementById("backdrop");
+    backdropDiv.classList.add("active-backdrop");
+    return <div id="modal"><span id="success-check"><FaCheck/></span></div>
+  } else if (props.id == 7) { // error modal
+    const backdropDiv = document.getElementById("backdrop");
+    backdropDiv.classList.add("active-backdrop");
+    return <div id="modal"><span id="error-check"><IoMdCloseCircleOutline/></span><span style={{color:"red"}}>Something Went Wrong</span><span id="error-check"><IoMdCloseCircleOutline/></span></div>
+  } 
 }

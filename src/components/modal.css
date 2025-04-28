@@ -1,3 +1,25 @@
+@keyframes loading {
+  0%{
+    transform: rotate(0);
+  }
+
+  100%{
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes success-mark {
+  0%{
+    font-size: 3vw;
+  }
+  50%{
+    font-size: 5vw;
+  }
+  100%{
+    font-size: 3vw;
+  }
+}
+
 .active-backdrop {
   background-color: rgba(66, 66, 66, 0.8);
   position: absolute;
@@ -90,4 +112,24 @@
 #cid-sender:active{
   border: 2px solid white !important;
   color: white;
+}
+
+#loading{
+  animation: loading 1s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3vw;
+}
+
+#success-check{
+  color: rgb(49, 195, 49);
+  font-size: 3vw;
+  animation: success-mark 2s ease-in-out;
+}
+
+#error-check{
+  color: red;
+  font-size: 3vw;
 }
