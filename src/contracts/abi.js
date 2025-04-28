@@ -19,7 +19,7 @@ const abi = [
   ],
 ];
 
-export const createContractTK = async ([provider]) => {
+export const createContractTK = async (provider) => {
   // const [provider] = await connectMM();
   const TKcontract = new Contract(TKaddr, abi[0], provider);
   return TKcontract;

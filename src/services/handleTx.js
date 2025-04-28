@@ -25,3 +25,8 @@ export const getNftById = async (contract, id) => {
   const result = await contract.tokenURI(id);
   return result;
 };
+
+export const buyNft = async (contract, info) => {
+  const result = await contract.transfer_TK();
+  return result;
+};
