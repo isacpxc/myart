@@ -79,7 +79,7 @@ export default function ConnectedProfile ({setConnected}) {
     const nameNFT = document.getElementById("nameNFT");
     const priceNFT = document.getElementById("priceNFT");
     const descNFT = document.getElementById("descNFT");
-    if (imgNFT.value){
+    if (imgNFT.value && nameNFT && priceNFT && descNFT){
       const reader = new FileReader();
       reader.readAsDataURL(imgNFT.files[0])
       reader.onload = ()=>{
@@ -94,7 +94,7 @@ export default function ConnectedProfile ({setConnected}) {
         a.download = "nft.json";
         a.click();
       }
-    } else alert("Você esqueceu a imagem");
+    } else alert("Você esqueceu algum campo");
     
   }
 
@@ -142,7 +142,7 @@ export default function ConnectedProfile ({setConnected}) {
             <div title="add nft" onClick={()=>{setModalId(2);}}><IoMdAdd/></div>
           </div>
         </div>
-        <Modal id={modalId} setId={setModalId} handleMintTK={handleMintTK}/>
+        <Modal id={modalId} setId={setModalId} handleMintTK={handleMintTK} nftjson={nftjson}/>
           {/* <span>Address: </span><input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} name="" id="" disabled />
           <br />
           <span>balance: </span><span onLoad={()=>{

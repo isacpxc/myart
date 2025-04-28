@@ -68,6 +68,14 @@ body {
   padding-left: 2px;
 }
 
+.mg-b-5{
+  margin-bottom: 5px;
+}
+
+.mg-l-5{
+  margin-left: 5px;
+}
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -81,3 +89,28 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.input-pattern{
+  outline: none;
+  border-radius: 10px;
+  border: 2px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+
+.input-pattern::placeholder{
+  color: rgb(177, 177, 177);
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.btn{
+  padding: 5px;
+  cursor: pointer;
+  display: flex; 
+  border: 2px solid var(--color-neon);
+  border-radius: 10px;
+}

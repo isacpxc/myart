@@ -19,6 +19,7 @@
   border: 2px solid var(--color-secondary);
   padding: 10px;
   display: flex;
+  align-items: center;
 }
 
 #tk-amount{
@@ -66,3 +67,21 @@
   color: red;
 }
 
+#input-file{
+  padding: 5px;
+  cursor: pointer;
+  display: flex; 
+  border: 2px solid var(--color-neon);
+  border-radius: 10px;
+}
+
+#input-file span{
+  font-size: 2vw;
+  margin-left: 5px;
+}
+
+.active-upload{
+  color: rgb(49, 195, 49);
+  background-color: rgb(26, 106, 26);
+  border: 2px solid rgb(49, 195, 49) !important;
+}
