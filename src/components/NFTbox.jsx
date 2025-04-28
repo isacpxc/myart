@@ -21,7 +21,7 @@ export default function NFTbox (props) {
           <span className="nft-item-title">Price:</span>
           <span className="nft-item-desc">{" "+props.price+" MATK"}</span>
         </div>
-        {localStorage.conn ? <BtnBuyNft id={props.id} owner={props.owner}/> : <div></div>}
+        {localStorage.conn ? <BtnBuyNft nft={props.nft} setNftUpdated={props.setNftUpdated} setModalHome={props.setModalHome} id={props.id} owner={props.owner}/> : <div></div>}
       </div>
     </div>
   );
