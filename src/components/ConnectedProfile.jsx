@@ -52,7 +52,8 @@ export default function ConnectedProfile ({setConnected}) {
 
   const handleRefreshBalance = async ()=> {
     const addressAcc = String(JSON.parse(localStorage.conn).address);
-    const contractTK = await createContractTK(await connectMM());
+    const provider = (await connectMM())[0];
+    const contractTK = await createContractTK(provider);
     // console.log(contractTK);
     handleTx.getBalance(contractTK,addressAcc)
     .then((res)=>{
@@ -65,7 +66,7 @@ export default function ConnectedProfile ({setConnected}) {
 
   const handleMintTK = async (amount)=>{
     const signer = (await connectMM())[1];
-    const contractTK = await createContractTK([signer]);
+    const contractTK = await createContractTK(signer);
     // console.log(signer);
     // console.log(contractTK);
     const tx = await handleTx.mintTK(contractTK,amount)
