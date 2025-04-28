@@ -7,6 +7,7 @@ import { FaDownload } from "react-icons/fa6";
 
 export default function Modal(props){
   const [amount, setAmount] = useState('');
+  const [cidTxt, setCdiTxt] = useState("");
   const [uploadState, setUploadState] = useState(0);
 
   const handleDownloadNft = async ()=>{
@@ -18,7 +19,7 @@ export default function Modal(props){
       const reader = new FileReader();
       reader.readAsDataURL(imgNFT.files[0])
       reader.onload = ()=>{
-        const template = props.nftjson;
+        const template = {};
         template.img = reader.result;
         template.name = nameNFT.value;
         template.price = priceNFT.value;
@@ -73,7 +74,22 @@ export default function Modal(props){
         <input type="text" placeholder="nameNFT" id="nameNFT" className="input-pattern mg-b-5"/>
         <input type="number" placeholder="priceNFT" id="priceNFT" className="input-pattern mg-b-5"/>
         <input type="text" placeholder="desc" id="descNFT" className="input-pattern mg-b-5"/>
-        <div className="mg-b-5 pointer btn" id="hold-download" onClick={()=>{handleDownloadNft()}}>Download <span id="icon-down" className="mg-l-5"><FaDownload/></span></div>
+        <div className="mg-b-5 pointer btn" id="hold-download" onClick={()=>{handleDownloadNft()}}>Download<span id="icon-down" className="mg-l-5"><FaDownload/></span></div>
+      </div>
+    );
+  } else if (props.id == 3) {
+    const backdropDiv = document.getElementById("backdrop");
+    backdropDiv.classList.add("active-backdrop");
+
+    return (
+      <div id="modal">
+        <input type="text" placeholder="CID" className="input-pattern" value={cidTxt} onChange={(e)=>{setCdiTxt(e.target.value)}}/>
+        <div className="btn mg-l-5" id="cid-sender" onClick={()=>{props.handleAddNFT(cidTxt)}}><IoMdCloudUpload/></div>
+        <div id="close-modal" title="close" onClick={()=>{
+          backdropDiv.classList.remove("active-backdrop");
+          props.setId(0);
+          setCdiTxt("");
+        }}>X</div>
       </div>
     );
   }

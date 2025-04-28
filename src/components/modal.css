@@ -73,6 +73,7 @@
   display: flex; 
   border: 2px solid var(--color-neon);
   border-radius: 10px;
+  align-items: center;
 }
 
 #input-file span{
@@ -84,4 +85,9 @@
   color: rgb(49, 195, 49);
   background-color: rgb(26, 106, 26);
   border: 2px solid rgb(49, 195, 49) !important;
+}
+
+#cid-sender:active{
+  border: 2px solid white !important;
+  color: white;
 }

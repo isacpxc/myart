@@ -5,7 +5,7 @@ import * as handleTx from "../services/handleTx";
 import { createContractNFT, createContractTK } from "../contracts/abi";
 import { getInfoFromCID } from "./../services/ipfsContact";
 import { IoLogOutOutline } from "react-icons/io5";
-import { IoMdRefresh, IoMdAdd } from "react-icons/io";
+import { IoMdRefresh, IoMdAdd, IoMdCloudUpload } from "react-icons/io";
 import { TbBrandCashapp } from "react-icons/tb";
 import NFTbox from "./NFTbox";
 import Modal from "./Modal";
@@ -15,8 +15,6 @@ import "./modal.css";
 
 export default function ConnectedProfile ({setConnected}) {
   const [balance, setBalance] = useState("?");
-  const [uriTxt, setUriTxt] = useState("");
-  // const [toMint, setToMint] = useState(0);
   const [nft, setNft] = useState([]);
   const [nftjson, setNftJson] = useState({"img":"", "name":"","price":0,"desc":""});
   const [modalId,setModalId] = useState(0);
@@ -74,43 +72,20 @@ export default function ConnectedProfile ({setConnected}) {
     // console.log(await tx.wait());
   }
 
-  const handleDownloadNft = async ()=>{
-    const imgNFT = document.getElementById("imgNFT");
-    const nameNFT = document.getElementById("nameNFT");
-    const priceNFT = document.getElementById("priceNFT");
-    const descNFT = document.getElementById("descNFT");
-    if (imgNFT.value && nameNFT && priceNFT && descNFT){
-      const reader = new FileReader();
-      reader.readAsDataURL(imgNFT.files[0])
-      reader.onload = ()=>{
-        const template = nftjson;
-        template.img = reader.result;
-        template.name = nameNFT.value;
-        template.price = priceNFT.value;
-        template.desc = descNFT.value;
-        const a = document.createElement("a");
-        const file = new Blob([JSON.stringify(template)],{type: "text/plain"});
-        a.href = URL.createObjectURL(file);
-        a.download = "nft.json";
-        a.click();
-      }
-    } else alert("Você esqueceu algum campo");
-    
-  }
+  // const tryGetFromIPFS = async ()=>{
+  //   const hold = "QmR5VZp9yohes1SuMT12Vdk5GU5kNDcha7ztTUxd8fpdda"
+  //   await getInfoFromCID("Qme7yJkCBFoSxku4fwD81GknSmcoCDhgzH5BZ5atZFD771");
+  // }
 
-  const tryGetFromIPFS = async ()=>{
-    const hold = "QmR5VZp9yohes1SuMT12Vdk5GU5kNDcha7ztTUxd8fpdda"
-    await getInfoFromCID("Qme7yJkCBFoSxku4fwD81GknSmcoCDhgzH5BZ5atZFD771");
-  }
-
-  const handleAddNFT = async ()=>{
-    if (uriTxt){
-      const addressAcc = String(JSON.parse(localStorage.conn).address);
-      const signer = (await connectMM())[1];
-      const contractNFT = await createContractNFT(signer);
-      // console.log(contractNFT);
-      const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
-      // console.log(await tx.wait());
+  const handleAddNFT = async (cid)=>{
+    if (cid){
+      console.log(cid);
+      // const addressAcc = String(JSON.parse(localStorage.conn).address);
+      // const signer = (await connectMM())[1];
+      // const contractNFT = await createContractNFT(signer);
+      // // console.log(contractNFT);
+      // const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
+      // // console.log(await tx.wait());
     } else alert("campo CID vazio");
   }
   ////////////////////////////////////////////////////////////////////////////////
@@ -140,9 +115,10 @@ export default function ConnectedProfile ({setConnected}) {
           <div id="conn-h-2">
             <span title="My Collection">My Collection</span>
             <div title="add nft" onClick={()=>{setModalId(2);}}><IoMdAdd/></div>
+            <div title="add cid" onClick={()=>{setModalId(3);}}><IoMdCloudUpload/></div>
           </div>
         </div>
-        <Modal id={modalId} setId={setModalId} handleMintTK={handleMintTK} nftjson={nftjson}/>
+        <Modal id={modalId} setId={setModalId} handleMintTK={handleMintTK} nftjson={nftjson} handleAddNFT={handleAddNFT}/>
           {/* <span>Address: </span><input type="text" placeholder={JSON.parse(localStorage.getItem('conn')).address} name="" id="" disabled />
           <br />
           <span>balance: </span><span onLoad={()=>{
