@@ -6,10 +6,16 @@ import { createContractNFT } from "../contracts/abi";
 import * as handleTx from "../services/handleTx"
 import { getInfoFromCID } from "./../services/ipfsContact";
 import NFTbox from "./NFTbox";
+import Modal from "./Modal";
+// import "./modal.css"
 
 export default function HomePage() {
   const [addressToSearch, setAddressToSearch] = useState('');
   const [nfts, setNfts] = useState([]);
+  const [modalHome, setModalHome] = useState(0);
+  const [newPrice, setNewPrice] = useState("");
+  const [nftUpdated, setNftUpdated] = useState({});
+
 
   const handleGetNft = async ()=>{
     if (addressToSearch) {
@@ -36,8 +42,9 @@ export default function HomePage() {
         <input type="text" value={addressToSearch} placeholder="Address to Search" onChange={(e)=>{setAddressToSearch(e.target.value)}}/><div><IoMdSearch size={30} onClick={handleGetNft}/></div>
       </div>
       <div className="hold-nft-boxes">
-        {nfts.map(event => <NFTbox owner={addressToSearch} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price}/>)}
+        {nfts.map(event => <NFTbox nft={event} setNftUpdated={setNftUpdated} newPrice={newPrice} owner={addressToSearch} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price} setModalHome={setModalHome}/>)}
       </div>
+      <Modal nftUpdated={nftUpdated} id={modalHome} setModalHome={setModalHome} setNewPrice={setNewPrice} newPrice={newPrice}/>
       {/* <button onClick={()=>{console.log(nfts)}}>teste state nft</button> */}
       {/* <div className="hold-nft-boxes">
         <div className="nft-box"></div>
