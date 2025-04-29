@@ -61,7 +61,7 @@ export default function ConnectedProfile ({setConnected}) {
     // console.log(contractTK);
     handleTx.getBalance(contractTK,addressAcc)
     .then((res)=>{
-        // localStorage.setItem("balance",res);
+        localStorage.setItem("balance",res);
         // console.log("successful query");
         setBalance(res);
         setModalId(0);
