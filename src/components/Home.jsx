@@ -20,21 +20,36 @@ export default function HomePage() {
 
   const handleGetNft = async ()=>{
     if (addressToSearch) {
-      setModalHome(5);
-      const addressAcc = addressToSearch;
-      const provider = await (await connectMM())[0];
-      const contractNFT = await createContractNFT(provider);
-      const result = await handleTx.myNfts(contractNFT, addressAcc);
-      let hold = [];
-      for (let i=0;i<result.length;i++){   
-        let cid = await handleTx.getNftById(contractNFT, result[i]);
-        let metadata = await getInfoFromCID(cid);
-        metadata.id = parseInt(result[i]);
-        hold.push(metadata)
+      const gettingNfts = async ()=>{
+        const addressAcc = addressToSearch;
+        const provider = await (await connectMM())[0];
+        const contractNFT = await createContractNFT(provider);
+        const result = await handleTx.myNfts(contractNFT, addressAcc);
+        let hold = [];
+        for (let i=0;i<result.length;i++){   
+          let cid = await handleTx.getNftById(contractNFT, result[i]);
+          let metadata = await getInfoFromCID(cid);
+          metadata.id = parseInt(result[i]);
+          hold.push(metadata)
+        }
+
+         return hold;
       }
-      setModalHome(0);
-      excludeBackdrop();
-      setNfts(hold);
+      setModalHome(5);
+      gettingNfts()
+      .then((res)=>{
+        setModalHome(0);
+        excludeBackdrop();
+        setNfts(res);
+      })
+      .catch(err => {
+        console.log("ERROR:", err);
+        setModalHome(7);
+        setTimeout(()=>{
+          setModalHome(0);
+          excludeBackdrop()
+        }, 1000)
+      })
     } else alert("Enter Address First")
   }
 

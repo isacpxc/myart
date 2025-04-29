@@ -64,23 +64,56 @@ export default function ConnectedProfile ({setConnected}) {
         // localStorage.setItem("balance",res);
         // console.log("successful query");
         setBalance(res);
+        setModalId(0);
+        excludeBackdrop();
     })
     .catch(err => {
       console.log("ERROR DURING TX: ", err)
       setModalId(7)
+      setTimeout(()=>{
+        setModalId(0);
+        excludeBackdrop();
+      },1000)
     })
-    setTimeout(()=>{
-      excludeBackdrop();
-      setModalId(0);
-    },1000)
+
   }
 
   const handleMintTK = async (amount)=>{
-    const signer = (await connectMM())[1];
-    const contractTK = await createContractTK(signer);
-    // console.log(signer);
-    // console.log(contractTK);
-    const tx = await handleTx.mintTK(contractTK,amount)
+    if (amount <= 0) {
+      setModalId(7);
+     await setTimeout(()=>{
+        setModalId(0);
+        excludeBackdrop();
+      },1000)
+      return 0;
+    }
+
+    const handleminting = async ()=>{
+      const signer = (await connectMM())[1];
+      const contractTK = await createContractTK(signer);
+      // console.log(signer);
+      // console.log(contractTK);
+      const tx = await handleTx.mintTK(contractTK,amount)
+      return await tx.wait()
+    }
+    setModalId(5);
+    handleminting()
+    .then(res => {
+      console.log("Receipt: ",res);
+      setModalId(6);
+      setTimeout(()=>{
+        setModalId(0)
+        excludeBackdrop();
+      }, 1000)
+    })
+    .catch(err => {
+      setModalId(7);
+      console.log("ERROR: ", err);
+      setTimeout(()=>{
+        setModalId(0)
+        excludeBackdrop();
+      })
+    })
     // console.log(await tx.wait());
   }
 
@@ -90,14 +123,36 @@ export default function ConnectedProfile ({setConnected}) {
   // }
 
   const handleAddNFT = async (cid)=>{
+    // console.log(1)
     if (cid){
-      console.log(cid);
-      // const addressAcc = String(JSON.parse(localStorage.conn).address);
-      // const signer = (await connectMM())[1];
-      // const contractNFT = await createContractNFT(signer);
-      // // console.log(contractNFT);
-      // const tx = await handleTx.mintNFT(contractNFT, addressAcc, uriTxt)
-      // // console.log(await tx.wait());
+      // console.log(2)
+      const handleAdding = async (cid) =>{
+        // console.log(cid);
+        const addressAcc = String(JSON.parse(localStorage.conn).address);
+        const signer = (await connectMM())[1];
+        const contractNFT = await createContractNFT(signer);
+        // // console.log(contractNFT);
+        const tx = await handleTx.mintNFT(contractNFT, addressAcc, cid)
+        return await tx.wait();
+      }
+      setModalId(5);
+      handleAdding(cid)
+      .then(res=>{
+        console.log("Receipt: ",res);
+        setModalId(6);
+        setTimeout(()=>{
+          setModalId(0)
+          excludeBackdrop();
+        }, 1000)
+      })
+      .catch(err=>{
+        setModalId(7)
+        console.log("ERROR: ", err);
+        setTimeout(()=>{
+          setModalId(0)
+          excludeBackdrop();
+        }, 1000)
+      })
     } else alert("campo CID vazio");
   }
   ////////////////////////////////////////////////////////////////////////////////
