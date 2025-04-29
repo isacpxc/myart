@@ -57,7 +57,13 @@ export default function HomePage() {
     <div id="hold-home">
       <span id="home-title">Search Collection by Address</span>
       <div id="search-home">
-        <input type="text" value={addressToSearch} placeholder="Address to Search" onChange={(e)=>{setAddressToSearch(e.target.value)}}/><div><IoMdSearch size={30} onClick={handleGetNft}/></div>
+        <input type="text" value={addressToSearch} placeholder="Address to Search" onKeyDown={(e)=>{
+          if (e.key == "Enter"){
+            e.preventDefault()
+            document.getElementById('btn-search-home').click();
+          }
+        }} onChange={(e)=>{setAddressToSearch(e.target.value)}}/>
+        <div id="btn-search-home" onClick={handleGetNft}><IoMdSearch size={30}/></div>
       </div>
       <div className="hold-nft-boxes">
         {nfts.map(event => <NFTbox nft={event} setNftUpdated={setNftUpdated} newPrice={newPrice} owner={addressToSearch} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price} setModalHome={setModalHome}/>)}
