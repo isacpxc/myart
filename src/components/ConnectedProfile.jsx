@@ -7,6 +7,7 @@ import { getInfoFromCID } from "./../services/ipfsContact";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdRefresh, IoMdAdd, IoMdCloudUpload } from "react-icons/io";
 import { TbBrandCashapp } from "react-icons/tb";
+import excludeBackdrop from "../util/excludeBackdrop";
 import NFTbox from "./NFTbox";
 import Modal from "./Modal";
 import "./connected.css";
@@ -35,6 +36,7 @@ export default function ConnectedProfile ({setConnected}) {
   }
 
   const handleGetNft = async () => {
+    setModalId(5);
     const addressAcc = String(JSON.parse(localStorage.conn).address);
     const provider = await (await connectMM())[0];
     const contractNFT = await createContractNFT(provider);
@@ -46,22 +48,31 @@ export default function ConnectedProfile ({setConnected}) {
       metadata.id = parseInt(result[i]);
       hold.push(metadata)
     }
-
+    setModalId(0)
+    excludeBackdrop();
     setNft(hold);
   }
 
   const handleRefreshBalance = async ()=> {
+    setModalId(5);
     const addressAcc = String(JSON.parse(localStorage.conn).address);
     const provider = (await connectMM())[0];
     const contractTK = await createContractTK(provider);
     // console.log(contractTK);
     handleTx.getBalance(contractTK,addressAcc)
     .then((res)=>{
-        localStorage.setItem("balance",res);
+        // localStorage.setItem("balance",res);
         // console.log("successful query");
         setBalance(res);
     })
-    .catch(err => +console.log("ERROR DURING TX: ", err))
+    .catch(err => {
+      console.log("ERROR DURING TX: ", err)
+      setModalId(7)
+    })
+    setTimeout(()=>{
+      excludeBackdrop();
+      setModalId(0);
+    },1000)
   }
 
   const handleMintTK = async (amount)=>{
