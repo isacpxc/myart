@@ -7,6 +7,7 @@ import * as handleTx from "../services/handleTx"
 import { getInfoFromCID } from "./../services/ipfsContact";
 import NFTbox from "./NFTbox";
 import Modal from "./Modal";
+import excludeBackdrop from "../util/excludeBackdrop";
 // import "./modal.css"
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
 
   const handleGetNft = async ()=>{
     if (addressToSearch) {
+      setModalHome(5);
       const addressAcc = addressToSearch;
       const provider = await (await connectMM())[0];
       const contractNFT = await createContractNFT(provider);
@@ -30,7 +32,8 @@ export default function HomePage() {
         metadata.id = parseInt(result[i]);
         hold.push(metadata)
       }
-  
+      setModalHome(0);
+      excludeBackdrop();
       setNfts(hold);
     } else alert("Enter Address First")
   }
