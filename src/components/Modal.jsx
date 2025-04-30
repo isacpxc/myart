@@ -5,11 +5,17 @@ import { IoMdCloudUpload, IoMdRefresh } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { handePostIPFS, handePostIPFS0 } from "../services/ipfsContact";
 
 export default function Modal(props){
   const [amount, setAmount] = useState('');
   const [cidTxt, setCdiTxt] = useState("");
   const [uploadState, setUploadState] = useState(0);
+
+  const handleUploadNft = async (data)=>{
+    const res = await handePostIPFS(data);
+    // const res = await handePostIPFS0(data);
+  }
 
   const handleDownloadNft = async ()=>{
     const imgNFT = document.getElementById("imgNFT");
@@ -101,7 +107,10 @@ export default function Modal(props){
       <div id="modal">
         <input type="number" className="input-pattern" placeholder="New Price" value={props.newPrice} onChange={(e)=>{props.setNewPrice(e.target.value)}}></input>
         <div className="btn mg-l-5" id="cid-sender" onClick={()=>{
-          console.log(props.nftUpdated); // proceed...
+          const nftToGo = props.nftUpdated // proceed...
+          nftToGo.price = props.newPrice;
+          console.log(typeof nftToGo);
+          handleUploadNft(nftToGo);
         }}>Buy</div>
         <div id="close-modal" title="close" onClick={()=>{
           backdropDiv.classList.remove("active-backdrop");
