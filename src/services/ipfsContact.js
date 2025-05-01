@@ -34,18 +34,21 @@ export const handePostIPFS = async (data) => {
   const blob = new Blob([jsonContent], { type: "application/json" });
   formData.append("file", blob, "nft.json");
 
-  fetch("http://127.0.0.1:5001/api/v0/add?quiet=true&quieter=false", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `Erro na API: ${response.status} ${response.statusText}`
-        );
+  const hashRtr = async () => {
+    const response = await fetch(
+      "http://127.0.0.1:5001/api/v0/add?quiet=true&quieter=false",
+      {
+        method: "POST",
+        body: formData,
       }
-      return response.json();
-    })
-    .then((data) => console.log("Resposta da API:", data))
-    .catch((error) => console.error("Erro:", error));
+    );
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+    }
+    const result = await response.json();
+    return result.Hash;
+  };
+
+  const cid = await hashRtr();
+  return cid;
 };

@@ -65,10 +65,13 @@ export default function HomePage() {
         }} onChange={(e)=>{setAddressToSearch(e.target.value)}}/>
         <div id="btn-search-home" onClick={handleGetNft}><IoMdSearch size={30}/></div>
       </div>
+      <span>Addresses: <span>0xb90F26F439129c1ea66b36Eb0C5f53ec8e55ECa4</span></span>
+      <span>Addresses: <span>0x45723405893fD4692C1f1A97c991B8DCe296437C</span></span>
+      <span>Addresses: <span>0x5D486CeA243C568E999AC41c522C37F913436627</span></span>
       <div className="hold-nft-boxes">
         {nfts.map(event => <NFTbox nft={event} setNftUpdated={setNftUpdated} newPrice={newPrice} owner={addressToSearch} id={event.id} name={event.name} desc={event.desc} key={event.name} boxStyle={{background: "url("+event.img+")", backgroundSize: "cover"}} price={event.price} setModalHome={setModalHome}/>)}
       </div>
-      <Modal nftUpdated={nftUpdated} id={modalHome} setModalHome={setModalHome} setNewPrice={setNewPrice} newPrice={newPrice}/>
+      <Modal nftUpdated={nftUpdated} handleGetNft={handleGetNft} id={modalHome} setModalHome={setModalHome} setNewPrice={setNewPrice} newPrice={newPrice}/>
       {/* <button onClick={()=>{console.log(nfts)}}>teste state nft</button> */}
       {/* <div className="hold-nft-boxes">
         <div className="nft-box"></div>

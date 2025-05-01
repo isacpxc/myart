@@ -6,6 +6,8 @@ import { FaCheck } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { handePostIPFS, handePostIPFS0 } from "../services/ipfsContact";
+import { handlePurchase } from "../services/metaConnection";
+import excludeBackdrop from "../util/excludeBackdrop";
 
 export default function Modal(props){
   const [amount, setAmount] = useState('');
@@ -13,8 +15,50 @@ export default function Modal(props){
   const [uploadState, setUploadState] = useState(0);
 
   const handleUploadNft = async (data)=>{
-    const res = await handePostIPFS(data);
-    // const res = await handePostIPFS0(data);
+    props.setModalHome(5);
+    let newHash;
+    try{
+      newHash = await handePostIPFS(data);
+    } catch(err) {
+      props.setModalHome(7)
+      setTimeout(()=>{
+        props.setModalHome(0);
+        excludeBackdrop();
+      }, 2000)
+      console.log("ERROR(IPFSUPLOAD): ",err);
+      return 0;
+    }
+    // console.log("ef",props.nftUpdated);
+    
+    let info = {
+      to: props.nftUpdated.owner, 
+      amount_tk: props.nftUpdated.oldPrice,
+      token_id: props.nftUpdated.id,
+      hash: newHash, 
+      old_hash: props.nftUpdated.oldHash 
+    }
+
+    // console.log(info);
+    let purchase;
+    try {
+      purchase = await handlePurchase(info);
+    } catch (err) {
+      props.setModalHome(7)
+      setTimeout(()=>{
+        props.setModalHome(0)
+        excludeBackdrop();
+      }, 2000)
+      console.log("ERROR(TX-BUY): ",err);
+      return 0;
+    }
+
+    console.log("receipt: ", purchase);
+    props.setModalHome(6)
+    setTimeout(()=>{
+      props.setModalHome(0)
+      excludeBackdrop();
+      props.handleGetNft();
+    }, 2000)
   }
 
   const handleDownloadNft = async ()=>{
@@ -109,7 +153,7 @@ export default function Modal(props){
         <div className="btn mg-l-5" id="cid-sender" onClick={()=>{
           const nftToGo = props.nftUpdated // proceed...
           nftToGo.price = props.newPrice;
-          console.log(typeof nftToGo);
+          // console.log(typeof nftToGo);
           handleUploadNft(nftToGo);
         }}>Buy</div>
         <div id="close-modal" title="close" onClick={()=>{
