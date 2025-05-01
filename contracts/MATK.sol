@@ -3,7 +3,7 @@
 pragma solidity ^0.8.20;
 
 interface MANFT{
-    function changeTokenOwner(address newOwner, address currentOwner, uint id, string memory uri, string memory oldUri) external;
+    function changeTokenOwner(address currentOwner, address newOwner, uint id, string memory uri, string memory oldUri) external;
 }
 
 

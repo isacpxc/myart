@@ -71,7 +71,7 @@ contract MyArtNFT is ERC721, ERC721URIStorage, Ownable {
         return true;
     }
 
-    function changeTokenOwner(address newOwner, address currentOwner, uint id, string memory uri, string memory oldUri) external {
+    function changeTokenOwner(address currentOwner, address newOwner, uint id, string memory uri, string memory oldUri) external {
         require(msg.sender == matk_contract_address, "not authorized");
         require(id < _nextTokenId, "id do not exist!");
         require(currentOwner == ownerOf(id), "You're not the owner of this NFT.");
