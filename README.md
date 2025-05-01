@@ -1,5 +1,7 @@
 # myart
 
+## DOCUMENTATION IN CONSTRUCTION
+
 myart is my personal project for a client-based application to interact with smart contracts.
 
 Essencially, the idea here is a simple marketplace to trade NFTs (AI-generated personal images) with the MATK token.
