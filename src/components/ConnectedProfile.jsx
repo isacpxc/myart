@@ -6,7 +6,7 @@ import { createContractNFT, createContractTK } from "../contracts/abi";
 import { getInfoFromCID } from "./../services/ipfsContact";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdRefresh, IoMdAdd, IoMdCloudUpload } from "react-icons/io";
-import { TbBrandCashapp } from "react-icons/tb";
+import { FaDollarSign } from "react-icons/fa6";
 import excludeBackdrop from "../util/excludeBackdrop";
 import NFTbox from "./NFTbox";
 import Modal from "./Modal";
@@ -171,7 +171,7 @@ export default function ConnectedProfile ({setConnected}) {
               <div id="conn-buy-ref">
                 <div id="btn-buy" title="buy token" onClick={()=>{
                   setModalId(1);
-                }}><TbBrandCashapp/></div>
+                }}><FaDollarSign/></div>
                 <div id="btn-ref" title="refresh balance" onClick={handleRefreshBalance}><IoMdRefresh/></div>
               </div>
               <div id="conn-balance">

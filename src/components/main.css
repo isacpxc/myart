@@ -1,6 +1,6 @@
 .main-content {
   width: 95%;
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-bg);
   min-height: 100vh;
   /* float: right; */
   padding: 2vw;

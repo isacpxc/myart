@@ -7,15 +7,30 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: bold;
-  color: var(--color-neon);
-  --color-primary: #042847;
-  --color-secondary: #6186b0;
+  color: var(--color-text);
+  /* --color-primary: #042847;
+  --color-secondary: #6186b0; */
   --color-dark-blue: #021526;
   --color-neon: aqua;
+
+  --color-bg: #121317;
+  --color-transparent-bg: #12131782;
+  --color-primary: #212226;
+  --color-border: #272B2E;
+  --color-text: #9FA0A4;
+  --color-emphasis-d: #1f1241;
+  --color-emphasis-b: #fff;
+  --color-btn: #3D4C53;
+  --color-btn-text: #C8E3DA;
+  --color-btn-buy-active: ;
+  --color-red: #BE2A2A;
+  --color-coin: #EFAE16;
+
+  --color-stable-black: #000;
 }
 
 html{
-  background-color: var(--color-primary);
+  background-color: var(--color-bg);
 }
 
 body {
@@ -50,8 +65,8 @@ body {
 }
 
 #markdown-container {
-  border-left: 5px solid var(--color-secondary);
-  border-right: 5px solid var(--color-secondary);
+  border-left: 5px solid var(--color-text);
+  border-right: 5px solid var(--color-text);
   text-align: center;
 }
 
@@ -92,7 +107,7 @@ input[type=number] {
 .input-pattern{
   outline: none;
   border-radius: 10px;
-  border: 2px solid var(--color-secondary);
+  border: 2px solid var(--color-text);
   background-color: var(--color-primary);
   padding: 5px;
   color: white;
