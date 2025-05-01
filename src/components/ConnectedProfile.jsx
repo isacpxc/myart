@@ -139,6 +139,7 @@ export default function ConnectedProfile ({setConnected}) {
       handleAdding(cid)
       .then(res=>{
         console.log("Receipt: ",res);
+        handleGetNft();
         setModalId(6);
         setTimeout(()=>{
           setModalId(0)
