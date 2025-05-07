@@ -20,6 +20,7 @@ export const getInfoFromCID = async (cid) => {
 };
 
 export const handePostIPFS0 = async (data) => {
+  // console.log("handePostIPFS0");
   const ipfs = create("/ip4/127.0.0.1/tcp/5001");
 
   // call Core API methods
@@ -35,18 +36,23 @@ export const handePostIPFS = async (data) => {
   formData.append("file", blob, "nft.json");
 
   const hashRtr = async () => {
-    const response = await fetch(
-      "http://127.0.0.1:5001/api/v0/add?quiet=true&quieter=false",
-      {
-        method: "POST",
-        body: formData,
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:5001/api/v0/add?quiet=true&quieter=false",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (!response.ok) {
+        console.log(response);
+        throw new Error(`Response status: ${response.status}`);
       }
-    );
-    if (!response.ok) {
-      throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+      const result = await response.json();
+      return result.Hash;
+    } catch (err) {
+      console.error(err.message);
     }
-    const result = await response.json();
-    return result.Hash;
   };
 
   const cid = await hashRtr();

@@ -25,6 +25,7 @@
   --color-btn-buy-active: ;
   --color-red: #BE2A2A;
   --color-coin: #EFAE16;
+  --color-confirm: rgb(96, 224, 41);
 
   --color-stable-black: #000;
 }
@@ -110,12 +111,12 @@ input[type=number] {
   border: 2px solid var(--color-text);
   background-color: var(--color-primary);
   padding: 5px;
-  color: white;
+  color: var(--color-emphasis-b);
   text-align: center;
 }
 
 .input-pattern::placeholder{
-  color: rgb(177, 177, 177);
+  color: var(--color-text);
 }
 
 .pointer{
@@ -126,6 +127,6 @@ input[type=number] {
   padding: 5px;
   cursor: pointer;
   display: flex; 
-  border: 2px solid var(--color-neon);
+  border: 2px solid var(--color-btn-text);
   border-radius: 10px;
 }

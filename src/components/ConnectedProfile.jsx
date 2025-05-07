@@ -41,6 +41,7 @@ export default function ConnectedProfile ({setConnected}) {
     const provider = await (await connectMM())[0];
     const contractNFT = await createContractNFT(provider);
     const result = await handleTx.myNfts(contractNFT, addressAcc);
+    console.log("2");
     let hold = [];
     for (let i=0;i<result.length;i++){   
       let cid = await handleTx.getNftById(contractNFT, result[i]);

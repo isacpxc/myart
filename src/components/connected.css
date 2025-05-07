@@ -35,7 +35,7 @@
 }
 
 #addr-logout input::placeholder{
-  color: var(--color-text);
+  color: WHITE;
 }
 
 #addr-logout div{
@@ -51,10 +51,10 @@
   color: var(--color-emphasis-b);
 } 
 
-/* #addr-logout div:active{
+#addr-logout div:active{
   background-color: var();
   color: red;
-} */
+}
 
 #matk-func{
   flex-basis: 30%;
@@ -90,10 +90,10 @@
   color: var(--color-btn-text);
 }
 
-/* #conn-buy-ref #btn-buy:active{
+#conn-buy-ref #btn-buy:active{
   background-color: white;
   color: rgb(49, 195, 49);
-} */
+}
 
 #conn-buy-ref #btn-ref{
   background-color: var(--color-btn);
@@ -108,10 +108,10 @@
   margin-left: 5px;
 }
 
-/* #conn-buy-ref #btn-ref:active{
+#conn-buy-ref #btn-ref:active{
   background-color: black;
   color: white;
-} */
+}
 
 #matk-func #conn-balance{
   /* background-color: cadetblue; */
@@ -153,9 +153,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-secondary);
+  /* border: 2px solid var(--color-secondary); */
   border-radius: 10px;
-  color: var(--color-text);
+  color: white;
   height: 60%;
   font-size: 1vw;
   padding: 10px;
@@ -163,7 +163,7 @@
 
 #conn-h-2 div {
   flex: 0.03;
-  background-color: rgb(96, 224, 41);
+  background-color: var(--color-confirm);
   margin-left: 5px;
   color: white;
   font-size: 2vw;

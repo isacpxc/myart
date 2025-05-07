@@ -38,7 +38,7 @@
   transform: translate(-50%, -50%);
   z-index: 100;
   border-radius: 10px;
-  border: 2px solid var(--color-secondary);
+  border: 2px solid var(--color-bg);
   padding: 10px;
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@
 #tk-amount{
   outline: none;
   border-radius: 10px;
-  border: 2px solid var(--color-secondary);
+  border: 2px solid white;
   background-color: var(--color-primary);
   padding: 5px;
   color: white;
@@ -93,7 +93,7 @@
   padding: 5px;
   cursor: pointer;
   display: flex; 
-  border: 2px solid var(--color-neon);
+  border: 2px solid white;
   border-radius: 10px;
   align-items: center;
 }
