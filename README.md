@@ -55,4 +55,5 @@ npm run dev
 - [Purchase NFTs from other users](https://youtu.be/c70edLGO8mw)
 
 ⚠️Disclaimer: Every time you perform an action that requires a transaction, the MetaMask extension will ask for authorization for it. Just confirm the action.
+
 💭: You can get free Sepolia ETH [here](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)
