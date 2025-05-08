@@ -1,39 +1,55 @@
-# myart
+# MyArt 🎨✨
 
-## DOCUMENTATION IN CONSTRUCTION
+## Introduction 🚀
 
-myart is my personal project for a client-based application to interact with smart contracts.
+Leveraging the popularity of AI-generated images, MyArt is an NFT marketplace powered by its native token called MATK. The platform offers:
 
-Essencially, the idea here is a simple marketplace to trade NFTs (AI-generated personal images) with the MATK token.
+- � Local usage without deployment, utilizing blockchain and IPFS technologies  
+- 🔗 MetaMask integration for direct interaction with NFT and MATK smart contracts  
+- 🌐 Decentralized NFT storage through the IPFS network  
+- 👀 Ability to browse other users' collections  
 
-## main topics
+## Prerequisites 📋
 
-* MATK token: internal token for marketing NFTs.
+- [Node.js v22 or higher](https://nodejs.org/en)
+- [MetaMask browser extension](https://metamask.io/download)
+- [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/) 
 
-* NFT: image + metadata.
+## Setup ⚙️
 
-* The metadata of the images will be stored in [IPFS network](https://ipfs.tech/).
+1. Install project dependencies:  
+   ```bash
+   npm install
+   ```
 
-* Login with [Metamask](https://metamask.io/).
+2. Configure IPFS Desktop integration by following:  
+   [IPFS Desktop Port Setup Guide](https://github.com/isacpxc/myart/issues/26)  and then ❗❗❗IMPORTANT: Restart the IPFS Desktop 
 
-* Use of [Sepolia](https://sepolia.dev/) testnet for now (maybe polygon latter).
+## Running the App 🏃‍♂️
 
-* [Ethers.js](https://docs.ethers.org/v5/) providing connection between frontend and the smartcontracts.
+To start the application in development mode:  
+```bash
+npm run dev
+```
 
-* [Helia](https://helia.io/) Provides connection with IPFS network.
+## Features 🌟
 
-* See [issues](https://github.com/isacpxc/myart/issues) for more
+### Authentication 🔐  
+- ❗❗❗IMPORTANT: Before Login to Application, change metamask network to testnet Sepolia.
+- Click "Login" to connect your MetaMask wallet to Sepolia testnet  
 
+### User Profile 👤  
+- View your current NFTs  
+- Access options to:  
+  - 💰 Buy MATK tokens  
+  - 🎨 Generate new NFTs  
 
-# React + Vite
+### Homepage 🏠  
+- Explore other users' collections (It depends of IPFS connection)
+- Buy available NFTs in the marketplace  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Detailed Guides 📚  
+- [How to buy MATK tokens](https://youtu.be/UW_zk3wRe2k)  
+- [Generate nft.json](https://youtu.be/1M2gtc3n2_I)  
+  - After that, make the upload of your nft.json with IPFS Desktop, and get the CID to generate your nft indeed. Click [here](https://youtu.be/KydRQLc6-j4) to see it.
+- [Purchase NFTs from other users](https://youtu.be/c70edLGO8mw) 
