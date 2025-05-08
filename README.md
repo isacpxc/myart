@@ -1,12 +1,11 @@
 # MyArt 🎨✨
 
-<img src="./src/assets/pic2.png" style="height: 200px;"/>
-<img src="./src/assets/pic1.png" style="height: 200px;"/>
-<img src="./src/assets/pic3.png" style="height: 200px;"/>
-<img src="./src/assets/pic5.png" style="height: 200px;"/>
-<img src="./src/assets/pic4.png" style="height: 200px;"/>
 
-
+![Login Page](./src/assets/pic2.png "Login Page").
+![Home Page](./src/assets/pic1.png "Home Page").
+![Profile Page](./src/assets/pic3.png "Profile Page").
+![Loading](./src/assets/pic5.png "Loading").
+![Upload Modal](./src/assets/pic4.png "Upload Modal").
 
 ## Introduction 🚀
 
