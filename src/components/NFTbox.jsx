@@ -1,5 +1,6 @@
-import BtnBuyNft from "./btnBuyNft";
+import BtnBuyNft from "./BtnBuyNft";
 
+// 
 export default function NFTbox (props) {
   
   return(
