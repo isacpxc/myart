@@ -52,4 +52,7 @@ npm run dev
 - [How to buy MATK tokens](https://youtu.be/UW_zk3wRe2k)  
 - [Generate nft.json](https://youtu.be/1M2gtc3n2_I)  
   - After that, make the upload of your nft.json with IPFS Desktop, and get the CID to generate your nft indeed. Click [here](https://youtu.be/KydRQLc6-j4) to see it.
-- [Purchase NFTs from other users](https://youtu.be/c70edLGO8mw) 
+- [Purchase NFTs from other users](https://youtu.be/c70edLGO8mw)
+
+⚠️Disclaimer: Every time you perform an action that requires a transaction, the MetaMask extension will ask for authorization for it. Just confirm the action.
+💭: You can get free Sepolia ETH [here](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)
