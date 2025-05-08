@@ -1,10 +1,10 @@
 # MyArt 🎨✨
 
-<img src="./src//assets/pic2.png" style="height: 200px;"/>
-<img src="./src//assets/pic1.png" style="height: 200px;"/>
-<img src="./src//assets/pic3.png" style="height: 200px;"/>
-<img src="./src//assets/pic5.png" style="height: 200px;"/>
-<img src="./src//assets/pic4.png" style="height: 200px;"/>
+<img src="./src/assets/pic2.png" style="height: 200px;"/>
+<img src="./src/assets/pic1.png" style="height: 200px;"/>
+<img src="./src/assets/pic3.png" style="height: 200px;"/>
+<img src="./src/assets/pic5.png" style="height: 200px;"/>
+<img src="./src/assets/pic4.png" style="height: 200px;"/>
 
 
 
